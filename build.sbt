@@ -18,3 +18,5 @@ libraryDependencies ++= Seq(
   "org.scalamock" %% "scalamock-scalatest-support" % "3.5.0" % Test,
   "org.scalacheck" %% "scalacheck" % "1.13.4" % Test
 )
+
+addCommandAlias("format", ";scalafmt;test:scalafmt")
