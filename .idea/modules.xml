@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sparkplayground.iml" filepath="$PROJECT_DIR$/.idea/modules/sparkplayground.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sparkplayground-build.iml" filepath="$PROJECT_DIR$/.idea/modules/sparkplayground-build.iml" />
     </modules>
   </component>
 </project>
