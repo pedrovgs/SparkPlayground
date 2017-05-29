@@ -8,7 +8,7 @@ trait SparkApp {
     val config = new SparkConf()
       .setAppName("SparkPlayground")
       .setMaster("local")
-    new SparkContext(config)
+    SparkContext.getOrCreate(config)
   }
 
 }

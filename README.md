@@ -13,8 +13,6 @@ This table contains all the information needed to understand every exercise reso
 | Exercise # | Tests | Goals	| Statement |
 |---	|---	|---	|---	|---	|
 | [#1. El Quijote][1] |[El Quijote Spec][1spec] | Learn how to use Spark Context and some basic RDDs methods. | [El Quijote Statement](./statements/EL_QUIJOTE.md) |
-|   	|   	|   	|   	|   	|
-|   	|   	|   	|   	|   	|
 
 ## Build and test this project
 
