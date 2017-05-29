@@ -1,3 +1,18 @@
 language: scala
 scala:
   - 2.12.2
+
+jdk:
+  - oraclejdk8
+
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot/
+
+script:
+    - sbt scalastyle
+    - sbt test:scalastyle
+    - sbt scalafmt::test
+    - sbt test:scalafmt::test
+    - sbt test
