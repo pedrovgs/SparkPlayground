@@ -21,11 +21,13 @@ object ElQuijote extends App with SparkApp {
 
   def numberOfChars(): Double = elQuijoteWords.map(_.length).sum()
 
-  pprint.pprintln("The first sentence in the book is: " + firstSentence())
-  pprint.pprintln("The last sentence in the book is: " + lastSentence())
-  pprint.pprintln("The number of lines the book contains is: " + numberOfLines())
-  pprint.pprintln("The number of words the book contains is: " + numberOfWords())
-  pprint.pprintln("The number of times the word \"Sancho\" appears is: " + numberOfSanchos())
-  pprint.pprintln("The number of chars the book contains is: " + numberOfChars())
-
+  override def main(args: Array[String]): Unit = {
+    super.main(args)
+    pprint.pprintln("The first sentence in the book is: " + firstSentence())
+    pprint.pprintln("The last sentence in the book is: " + lastSentence())
+    pprint.pprintln("The number of lines the book contains is: " + numberOfLines())
+    pprint.pprintln("The number of words the book contains is: " + numberOfWords())
+    pprint.pprintln("The number of times the word \"Sancho\" appears is: " + numberOfSanchos())
+    pprint.pprintln("The number of chars the book contains is: " + numberOfChars())
+  }
 }
