@@ -4,6 +4,14 @@ Playground for experimenting with [Apache Spark](https://spark.apache.org/) usin
 
 ![SparkLogo](./art/sparkLogo.png)
 
+This repository contains a bunch of exercises resolved using Apache Spark and written in Scala. The exercises resolved use public APIs or open datasets in order to experiment with the different Apache Spark APIs. The goal is to practice and learn. Inside this repository you will find RDDs, DataSets, and DataFrames usage, Spark SQL queries, Spark Streaming examples and Machine Learning stuff :simley:.
+
+## Exercises
+
+## Build and test this project
+
+To build and test this project you can execute ``sbt test``.
+
 Developed By
 ------------
 
