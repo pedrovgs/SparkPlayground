@@ -8,6 +8,14 @@ This repository contains a bunch of exercises resolved using Apache Spark and wr
 
 ## Exercises
 
+This table contains all the information needed to understand every exercise resolved in this repository.
+
+| Exercise # | Tests | Goals	| Statement |
+|---	|---	|---	|---	|---	|
+| [#1. El Quijote][1] |[El Quijote Spec][1spec] | Learn how to use Spark Context and some basic RDDs methods. | [El Quijote Statement](./statements/EL_QUIJOTE.md) |
+|   	|   	|   	|   	|   	|
+|   	|   	|   	|   	|   	|
+
 ## Build and test this project
 
 To build and test this project you can execute ``sbt test``.
@@ -41,3 +49,5 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
 
+[1]: ./src/main/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijote.scala
+[1spec]: ./src/main/test/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijoteSpec.scala 
