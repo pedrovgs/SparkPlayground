@@ -12,9 +12,9 @@ This list contains all the information needed to understand every exercise resol
 
 * **# 1 - El Quijote**:
     * Goal: Learn how to use ``SparkContext`` and some basic ``RDDs`` methods.
-    * [Statement](./statements/EL_QUIJOTE.md)
-    * [Code](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijote.scala)
-    * [Tests](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijoteSpec.scala)
+    * [Statement.](./statements/EL_QUIJOTE.md)
+    * [Code.](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijote.scala)
+    * [Tests.](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijoteSpec.scala)
 
 ## Build and test this project
 
