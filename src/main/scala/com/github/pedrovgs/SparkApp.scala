@@ -4,10 +4,10 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 trait SparkApp {
 
-  lazy val sparkContext: SparkContext = {
+  implicit val sparkContext: SparkContext = {
     val config = new SparkConf()
       .setAppName("SparkPlayground")
-      .setMaster("local")
+      .setMaster("local[*]")
     SparkContext.getOrCreate(config)
   }
 

@@ -6,15 +6,20 @@ enablePlugins(ScalafmtPlugin)
 CommandAliases.addCommandAliases()
 
 libraryDependencies ++=  Seq(
-  "org.apache.spark" %% "spark-core" % Versions.sparkVersion,
-  "org.apache.spark" %% "spark-streaming" % Versions.sparkVersion,
-  "org.apache.spark" %% "spark-sql" % Versions.sparkVersion,
-  "org.apache.spark" %% "spark-mllib" % Versions.sparkVersion,
+  "org.apache.spark" %% "spark-core" % Versions.spark,
+  "org.apache.spark" %% "spark-streaming" % Versions.spark,
+  "org.apache.spark" %% "spark-sql" % Versions.spark,
+  "org.apache.spark" %% "spark-mllib" % Versions.spark,
   "com.lihaoyi" %% "pprint" % Versions.pprint
 )
 
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % Versions.scalaTest % Test,
   "org.scalamock" %% "scalamock-scalatest-support" % Versions.scalaMock % Test,
-  "org.scalacheck" %% "scalacheck" % Versions.scalaCheck % Test
+  "org.scalacheck" %% "scalacheck" % Versions.scalaCheck % Test,
+  "com.holdenkarau" %% "spark-testing-base" % Versions.sparkTestingBase % Test
 )
+
+fork in Test := true
+parallelExecution in Test := false
+javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled")
