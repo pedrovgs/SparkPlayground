@@ -17,7 +17,14 @@ This table contains all the exercises resolved in this repository sorted by goal
 
 ## Build and test this project
 
-To build and test this project you can execute ``sbt test``.
+To build and test this project you can execute ``sbt test``. You can also use ``sbt`` interactive mode (you just have to execute ``sbt`` in your terminal) and then use the triggered execution to execute your tests using the following commands inside the interactive mode:
+
+```
+~ test // Runs every test in your project
+~ test-only *AnySpec // Runs specs matching with the filter passed as param.
+```
+
+or if you want to j
 
 Developed By
 ------------
