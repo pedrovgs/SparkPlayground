@@ -5,8 +5,8 @@ In mathematics, a series is, roughly speaking, a description of the operation of
 Using Scala ranges, collections and Apache Spark RDDs, could you answer the following questions?
 
 * Find the first 10 prime numbers.
-* Take the 5 biggest numbers in a random double series with 1000 elements.
-* Take the 5 smallest numbers in a random double series with 1000 elements.
+* Take the 10 biggest numbers in a random double series with 1000 elements.
+* Take the 10 smallest numbers in a random double series with 1000 elements.
 * Find every prime number which is also even in a integer series with the first 1000 elements.
 * Find every prime number which is also odd in a integer series with the first 1000 elements.
 * Sum the first 1000 elements in the Fibonacci series.
