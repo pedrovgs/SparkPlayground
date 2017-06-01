@@ -4,15 +4,13 @@ scalaVersion := "2.11.11"
 
 enablePlugins(ScalafmtPlugin)
 CommandAliases.addCommandAliases()
-addCompilerPlugin("org.scalamacros" % "paradise" % Versions.paradise cross CrossVersion.full)
 
 libraryDependencies ++=  Seq(
   "org.apache.spark" %% "spark-core" % Versions.spark,
   "org.apache.spark" %% "spark-streaming" % Versions.spark,
   "org.apache.spark" %% "spark-sql" % Versions.spark,
   "org.apache.spark" %% "spark-mllib" % Versions.spark,
-  "com.lihaoyi" %% "pprint" % Versions.pprint,
-  "com.softwaremill.macmemo" %% "macros" % Versions.macmemo
+  "com.lihaoyi" %% "pprint" % Versions.pprint
 
 )
 

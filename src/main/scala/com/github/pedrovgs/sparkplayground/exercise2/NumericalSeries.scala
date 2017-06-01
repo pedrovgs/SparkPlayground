@@ -1,12 +1,10 @@
 package com.github.pedrovgs.sparkplayground.exercise2
 
 import com.github.pedrovgs.SparkApp
-import com.softwaremill.macmemo.memoize
 import org.apache.spark.rdd.RDD
 
 import scala.annotation.tailrec
 import scala.util.Random
-import scala.concurrent.duration._
 
 object NumericalSeries extends App with SparkApp {
 
@@ -15,7 +13,8 @@ object NumericalSeries extends App with SparkApp {
     sparkContext.parallelize(0 to 1000).map(_ => Random.nextInt()).persist()
   private lazy val fibonacciNumbers: RDD[Long] = fibonacciRDDs(50L)
 
-  private def fibonacciRDDs(n: Long): RDD[Long] = sparkContext.parallelize(0L to n).map(fibonacci(_)).persist()
+  private def fibonacciRDDs(n: Long): RDD[Long] =
+    sparkContext.parallelize(0L to n).map(fibonacci(_)).persist()
 
   def firstTenPrimeNumbers(): Array[Int] = numbers.filter(isPrime).take(10)
 
@@ -30,7 +29,6 @@ object NumericalSeries extends App with SparkApp {
 
   def sum60FibonacciValues(): Double = fibonacciRDDs(60L).sum()
 
-  @memoize(maxSize = 20000, expiresAfter = 2 hours)
   private def isPrime(n: Int): Boolean = {
     if (n <= 1) {
       false
@@ -41,12 +39,12 @@ object NumericalSeries extends App with SparkApp {
     }
   }
 
-  @memoize(maxSize = 20000, expiresAfter = 2 hours)
   private def fibonacci(n: Long): Long = {
     @tailrec
     def go(count: Long, prev: Long, acc: Long): Long = {
       if (count == 0) acc else go(count - 1, acc, acc + prev)
     }
+
     go(n, 1, 0)
   }
 
@@ -67,5 +65,9 @@ object NumericalSeries extends App with SparkApp {
   pprint.pprintln(
     "This is the list of the values being odd and part of the fibonacci series: "
       + fibonacciAndOddValues().mkString(","))
-  pprint.pprintln("The sum of the first 60 items in the fibonacci series is: " + sum60FibonacciValues())
+  pprint.pprintln(
+    "The sum of the first 60 items in the fibonacci series is: " + sum60FibonacciValues())
+
+  pprint.pprintln("This is a list of 1000 random integers: ")
+  randomNumbers.foreach(pprint.pprintln(_))
 }
