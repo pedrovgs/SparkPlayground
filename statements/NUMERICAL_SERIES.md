@@ -9,5 +9,5 @@ Using Scala ranges, collections and Apache Spark RDDs, could you answer the foll
 * Take the 10 smallest numbers in a random double series with 1000 elements.
 * Find every fibonacci number which is also even in a integer series with the first 50 elements.
 * Find every fibonacci number which is also odd in a integer series with the first 50 elements.
-* Sum the first 1000 elements in the Fibonacci series.
+* Sum the first 60 elements in the Fibonacci series.
 * Print every number in a random float series.

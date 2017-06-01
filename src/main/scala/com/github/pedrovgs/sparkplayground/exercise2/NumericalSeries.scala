@@ -13,8 +13,9 @@ object NumericalSeries extends App with SparkApp {
   private lazy val numbers: RDD[Int] = sparkContext.parallelize(0 until Int.MaxValue)
   private lazy val randomNumbers: RDD[Int] =
     sparkContext.parallelize(0 to 1000).map(_ => Random.nextInt()).persist()
-  private lazy val fibonacciNumbers: RDD[Long] =
-    sparkContext.parallelize(0L to 50L).map(fibonacci(_)).persist()
+  private lazy val fibonacciNumbers: RDD[Long] = fibonacciRDDs(50L)
+
+  private def fibonacciRDDs(n: Long): RDD[Long] = sparkContext.parallelize(0L to n).map(fibonacci(_)).persist()
 
   def firstTenPrimeNumbers(): Array[Int] = numbers.filter(isPrime).take(10)
 
@@ -26,6 +27,8 @@ object NumericalSeries extends App with SparkApp {
   def fibonacciAndEvenValues(): Array[Long] = fibonacciNumbers.filter(isEven).collect()
 
   def fibonacciAndOddValues(): Array[Long] = fibonacciNumbers.filter(isOdd).collect()
+
+  def sum60FibonacciValues(): Double = fibonacciRDDs(60L).sum()
 
   @memoize(maxSize = 20000, expiresAfter = 2 hours)
   private def isPrime(n: Int): Boolean = {
@@ -64,4 +67,5 @@ object NumericalSeries extends App with SparkApp {
   pprint.pprintln(
     "This is the list of the values being odd and part of the fibonacci series: "
       + fibonacciAndOddValues().mkString(","))
+  pprint.pprintln("The sum of the first 60 items in the fibonacci series is: " + sum60FibonacciValues())
 }

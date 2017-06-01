@@ -36,4 +36,8 @@ class NumericalSeriesSpec extends FlatSpec with Matchers with SharedSparkContext
       832040, 3524578, 14930352, 63245986, 267914296L, 1134903170L, 4807526976L)
   }
 
+  it should "sum the first 60 elements in the fibonacci series" in {
+    sum60FibonacciValues() shouldBe 4.05273953788E12 +- 0.1
+  }
+
 }
