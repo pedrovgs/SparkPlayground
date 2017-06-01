@@ -31,4 +31,9 @@ class NumericalSeriesSpec extends FlatSpec with Matchers with SharedSparkContext
       7778742049L, 12586269025L)
   }
 
+  it should "find every fibonacci number which is also odd" in {
+    fibonacciAndOddValues() shouldBe Array(0, 2, 8, 34, 144, 610, 2584, 10946, 46368, 196418,
+      832040, 3524578, 14930352, 63245986, 267914296L, 1134903170L, 4807526976L)
+  }
+
 }

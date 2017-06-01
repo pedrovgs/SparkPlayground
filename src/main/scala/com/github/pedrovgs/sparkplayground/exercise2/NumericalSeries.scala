@@ -23,7 +23,9 @@ object NumericalSeries extends App with SparkApp {
   def tenSmallestRandomNumbers(): (RDD[Int], Array[Int]) =
     (randomNumbers, randomNumbers.takeOrdered(10))
 
-  def fibonacciAndEvenValues(): Array[Long] = fibonacciNumbers.filter(_ % 2 != 0).collect()
+  def fibonacciAndEvenValues(): Array[Long] = fibonacciNumbers.filter(isEven).collect()
+
+  def fibonacciAndOddValues(): Array[Long] = fibonacciNumbers.filter(isOdd).collect()
 
   @memoize(maxSize = 20000, expiresAfter = 2 hours)
   private def isPrime(n: Int): Boolean = {
@@ -45,6 +47,10 @@ object NumericalSeries extends App with SparkApp {
     go(n, 1, 0)
   }
 
+  private def isEven(n: Long): Boolean = n % 2 != 0
+
+  private def isOdd(n: Long): Boolean = !isEven(n)
+
   pprint.pprintln("This is the list of the first 10 prime numbers: " + firstTenPrimeNumbers())
   pprint.pprintln(
     "This is the list of the 10 biggest numbers in a random numerical series: "
@@ -55,4 +61,7 @@ object NumericalSeries extends App with SparkApp {
   pprint.pprintln(
     "This is the list of the values being even and part of the fibonacci series: "
       + fibonacciAndEvenValues().mkString(","))
+  pprint.pprintln(
+    "This is the list of the values being odd and part of the fibonacci series: "
+      + fibonacciAndOddValues().mkString(","))
 }
