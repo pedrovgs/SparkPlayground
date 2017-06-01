@@ -2,7 +2,6 @@ package com.github.pedrovgs.sparkplayground.exercise2
 
 import com.github.pedrovgs.SparkApp
 import org.apache.spark.rdd.RDD
-
 import scala.annotation.tailrec
 import scala.util.Random
 
@@ -30,7 +29,8 @@ object NumericalSeries extends App with SparkApp {
   def sum60FibonacciValues(): Double = fibonacciRDDs(60L).sum()
 
   def sum6000FibonacciValuesUsingReduce(): Double = fibonacciRDDs(6000L).reduce((x, y) => x + y)
-  def sum6000FibonacciValuesUsingFold(): Double   = fibonacciRDDs(6000L).fold(0)((x, y) => x + y)
+
+  def sum6000FibonacciValuesUsingFold(): Double = fibonacciRDDs(6000L).fold(0)((x, y) => x + y)
 
   private def isPrime(n: Int): Boolean = {
     if (n <= 1) {
