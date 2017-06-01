@@ -24,4 +24,11 @@ class NumericalSeriesSpec extends FlatSpec with Matchers with SharedSparkContext
     numbers.sortWith(_ < _).take(10) shouldBe tenSmallestNumbers
   }
 
+  it should "find every fibonacci number which is also even" in {
+    fibonacciAndEvenValues() shouldBe Array(1, 1, 3, 5, 13, 21, 55, 89, 233, 377, 987, 1597, 4181,
+      6765, 17711, 28657, 75025, 121393, 317811, 514229, 1346269, 2178309, 5702887, 9227465,
+      24157817, 39088169, 102334155, 165580141, 433494437, 701408733, 1836311903, 2971215073L,
+      7778742049L, 12586269025L)
+  }
+
 }
