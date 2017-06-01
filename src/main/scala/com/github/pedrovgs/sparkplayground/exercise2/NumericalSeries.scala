@@ -73,8 +73,10 @@ object NumericalSeries extends App with SparkApp {
   pprint.pprintln("This is a list of 1000 random integers: ")
   randomNumbers.foreach(pprint.pprintln(_))
   pprint.pprintln(
-    "This is the sum of the first 6000 fibonacci numbers calculated using reduce action: " + sum6000FibonacciValuesUsingReduce())
+    "This is the sum of the first 6000 fibonacci numbers calculated using reduce action: "
+      + sum6000FibonacciValuesUsingReduce())
   pprint.pprintln(
-    "This is the sum of the first 6000 fibonacci numbers calculated using fold action: " + sum6000FibonacciValuesUsingFold())
+    "This is the sum of the first 6000 fibonacci numbers calculated using fold action: "
+      + sum6000FibonacciValuesUsingFold())
 
 }
