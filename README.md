@@ -22,9 +22,7 @@ To build and test this project you can execute ``sbt test``. You can also use ``
 ```
 ~ test // Runs every test in your project
 ~ test-only *AnySpec // Runs specs matching with the filter passed as param.
-```
-
-or if you want to j
+``` 
 
 Developed By
 ------------
