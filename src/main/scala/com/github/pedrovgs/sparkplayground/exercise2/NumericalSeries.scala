@@ -29,6 +29,9 @@ object NumericalSeries extends App with SparkApp {
 
   def sum60FibonacciValues(): Double = fibonacciRDDs(60L).sum()
 
+  def sum6000FibonacciValuesUsingReduce(): Double = fibonacciRDDs(6000L).reduce((x, y) => x + y)
+  def sum6000FibonacciValuesUsingFold(): Double   = fibonacciRDDs(6000L).fold(0)((x, y) => x + y)
+
   private def isPrime(n: Int): Boolean = {
     if (n <= 1) {
       false
@@ -67,7 +70,11 @@ object NumericalSeries extends App with SparkApp {
       + fibonacciAndOddValues().mkString(","))
   pprint.pprintln(
     "The sum of the first 60 items in the fibonacci series is: " + sum60FibonacciValues())
-
   pprint.pprintln("This is a list of 1000 random integers: ")
   randomNumbers.foreach(pprint.pprintln(_))
+  pprint.pprintln(
+    "This is the sum of the first 6000 fibonacci numbers calculated using reduce action: " + sum6000FibonacciValuesUsingReduce())
+  pprint.pprintln(
+    "This is the sum of the first 6000 fibonacci numbers calculated using fold action: " + sum6000FibonacciValuesUsingFold())
+
 }
