@@ -8,17 +8,21 @@ This repository contains a bunch of exercises resolved using Apache Spark and wr
 
 ## Exercises
 
-This list contains all the information needed to understand every exercise resolved in this repository.
+This table contains all the exercises resolved in this repository sorted by goals with links for the solution and the specs.
 
-* **# 1 - El Quijote**:
-    * Goal: Learn how to use ``SparkContext`` and some basic ``RDDs`` methods.
-    * [Statement.](./statements/EL_QUIJOTE.md)
-    * [Code.](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijote.scala)
-    * [Tests.](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijoteSpec.scala)
+| # | Goal | Statement | Code | Tests |
+| - | ---- | --------- | ---- | ----- |
+| 1 | Learn how to use ``SparkContext`` and some basic ``RDDs`` methods. | [El Quijote statement.](./statements/EL_QUIJOTE.md) | [ElQuijote.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijote.scala) | [ElQuijoteSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijoteSpec.scala) |
+| 2 | Learn how to parallelize Scala collections and work with them as ``RDDs``. | [Numerical series statement.](./statements/NUMERICAL_SERIES.md) | [NumericalSeries.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise2/NumericalSeries.scala) | [NumericalSeriesSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/NumericalSeriesSpec.scala) |
 
 ## Build and test this project
 
-To build and test this project you can execute ``sbt test``.
+To build and test this project you can execute ``sbt test``. You can also use ``sbt`` interactive mode (you just have to execute ``sbt`` in your terminal) and then use the triggered execution to execute your tests using the following commands inside the interactive mode:
+
+```
+~ test // Runs every test in your project
+~ test-only *AnySpec // Runs specs matching with the filter passed as param.
+``` 
 
 Developed By
 ------------

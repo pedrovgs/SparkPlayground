@@ -1,9 +1,10 @@
 package com.github.pedrovgs.sparkplayground.exercise1
 
 import com.github.pedrovgs.sparkplayground.exercise1.ElQuijote._
+import com.holdenkarau.spark.testing.SharedSparkContext
 import org.scalatest.{FlatSpec, Matchers}
 
-class ElQuijoteSpec extends FlatSpec with Matchers {
+class ElQuijoteSpec extends FlatSpec with Matchers with SharedSparkContext {
 
   "El Quijote" should "find the first sentence in the book" in {
     firstSentence shouldBe "BIBLIOTECA PERLA"
