@@ -5,8 +5,9 @@ import org.apache.spark.rdd.RDD
 
 object Sets extends App with SparkApp {
 
-  private lazy val frankensteinWords: RDD[String] = extractWords("/exercise3/frankenstein.txt")
-  private lazy val dorianGrayWords: RDD[String] = extractWords(
+  private lazy val frankensteinWords: RDD[String] = extractDistinctWords(
+    "/exercise3/frankenstein.txt")
+  private lazy val dorianGrayWords: RDD[String] = extractDistinctWords(
     "/exercise3/the-picture-of-dorian-gray.txt")
   private lazy val bothBooksWordsSortedBySize: RDD[String] = frankensteinWords
     .union(dorianGrayWords)
@@ -28,7 +29,11 @@ object Sets extends App with SparkApp {
   def findFirstFiveWordsInFrankensteinAndNotInDorian(): Array[String] =
     frankensteinMinusDorian.take(5)
 
-  private def extractWords(fileName: String): RDD[String] = {
+  def getFrankensteinDifferentWordsCount(): Long = frankensteinWords.count()
+
+  def getDorianGrayDifferentWordsCount(): Long = dorianGrayWords.count()
+
+  private def extractDistinctWords(fileName: String): RDD[String] = {
     val filePath = getClass.getResource(fileName).getPath
     sparkContext.textFile(filePath).flatMap(_.split(" ")).filter(_.nonEmpty).distinct().persist()
   }
@@ -52,4 +57,9 @@ object Sets extends App with SparkApp {
     "This is the list of words bein part of Frankenstein but not part of THe Picture of Dorian Gray: "
       + frankensteinMinusDorian.collect().mkString(",")
   )
+  pprint.pprintln(
+    "The number of different words in Frankenstein is: " + getFrankensteinDifferentWordsCount)
+  pprint.pprintln(
+    "The number of different words in The Picture of Dorian Gray is: " + getDorianGrayDifferentWordsCount)
+
 }

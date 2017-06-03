@@ -7,7 +7,11 @@ import org.scalatest.{FlatSpec, Matchers}
 class SetsSpec extends FlatSpec with Matchers with SharedSparkContext {
 
   "SetsSpec" should "find the first 5 words in Frankenstein" in {
-    findFirstFiveFrankensteinWords() shouldBe List("Ah!", "destination,", "letter:", "\"\'Enter,\'", "been")
+    findFirstFiveFrankensteinWords() shouldBe List("Ah!",
+                                                   "destination,",
+                                                   "letter:",
+                                                   "\"\'Enter,\'",
+                                                   "been")
   }
 
   it should "find the first 5 words in The Picture of Dorian Gray" in {
@@ -35,9 +39,13 @@ class SetsSpec extends FlatSpec with Matchers with SharedSparkContext {
 
   it should "find the first 5 words in Frankenstein not bein part of Dorian Gray" in {
     findFirstFiveWordsInFrankensteinAndNotInDorian() shouldBe List("Reserve",
-      "despairing,",
-      "withdrawn",
-      "abrupt",
-      "sailors;")
+                                                                   "despairing,",
+                                                                   "withdrawn",
+                                                                   "abrupt",
+                                                                   "sailors;")
+  }
+
+  it should "know that The Picture of Dorian Gray contains more words than Frankenstein" in {
+    getDorianGrayDifferentWordsCount() > getFrankensteinDifferentWordsCount() shouldBe true
   }
 }
