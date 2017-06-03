@@ -43,7 +43,13 @@ object Sets extends App with SparkApp {
 
   private def extractDistinctWords(fileName: String): RDD[String] = {
     val filePath = getClass.getResource(fileName).getPath
-    sparkContext.textFile(filePath).flatMap(_.split(" ")).filter(_.nonEmpty).distinct().persist()
+    sparkContext
+      .textFile(filePath)
+      .flatMap(_.split(" "))
+      .filter(_.nonEmpty)
+      .map(_.toLowerCase())
+      .distinct()
+      .persist()
   }
 
   pprint.pprintln(

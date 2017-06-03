@@ -7,15 +7,19 @@ import org.scalatest.{FlatSpec, Matchers}
 class SetsSpec extends FlatSpec with Matchers with SharedSparkContext {
 
   "SetsSpec" should "find the first 5 words in Frankenstein" in {
-    findFirstFiveFrankensteinWords() shouldBe List("Ah!",
+    findFirstFiveFrankensteinWords() shouldBe List("clerval!",
                                                    "destination,",
+                                                   "'felix,'",
                                                    "letter:",
-                                                   "\"\'Enter,\'",
                                                    "been")
   }
 
   it should "find the first 5 words in The Picture of Dorian Gray" in {
-    findFirstFiveDorianGrayWords() shouldBe List("young", "Ah!", "rises.", "heroine.", "House")
+    findFirstFiveDorianGrayWords() shouldBe List("young",
+                                                 "rises.",
+                                                 "heroine.",
+                                                 "harmonies",
+                                                 "roses.")
   }
 
   it should "find the first 10 words found in both books when sorted by word length" in {
@@ -29,20 +33,24 @@ class SetsSpec extends FlatSpec with Matchers with SharedSparkContext {
       "industrious--painstaking,",
       "http://www.gutenberg.net",
       "http://www.gutenberg.net",
-      "self-accusations.--Poor"
+      "self-accusations.--poor"
     )
   }
 
   it should "find the first 5 words in the intersection of both books" in {
-    findFirstFiveWordsInBothBooks() shouldBe List("Ah!", "been", "breath", "older.", "knows")
+    findFirstFiveWordsInBothBooks() shouldBe List("been",
+                                                  "breath",
+                                                  "older.",
+                                                  "knows",
+                                                  "performed,")
   }
 
   it should "find the first 5 words in Frankenstein not bein part of Dorian Gray" in {
-    findFirstFiveWordsInFrankensteinAndNotInDorian() shouldBe List("Reserve",
-                                                                   "despairing,",
+    findFirstFiveWordsInFrankensteinAndNotInDorian() shouldBe List("despairing,",
                                                                    "withdrawn",
                                                                    "abrupt",
-                                                                   "sailors;")
+                                                                   "sailors;",
+                                                                   "morning's")
   }
 
   it should "know that The Picture of Dorian Gray contains more words than Frankenstein" in {
@@ -50,14 +58,14 @@ class SetsSpec extends FlatSpec with Matchers with SharedSparkContext {
   }
 
   it should "find the first 5 combinations of Frakenstein and Dorian books words" in {
-    firstFiveCombinationsOfFrankensteinAndDorian() shouldBe List(("Ah!", "young"),
-                                                                 ("Ah!", "Ah!"),
-                                                                 ("Ah!", "rises."),
-                                                                 ("Ah!", "heroine."),
-                                                                 ("Ah!", "House"))
+    firstFiveCombinationsOfFrankensteinAndDorian() shouldBe List(("clerval!", "young"),
+                                                                 ("clerval!", "rises."),
+                                                                 ("clerval!", "heroine."),
+                                                                 ("clerval!", "harmonies"),
+                                                                 ("clerval!", "roses."))
   }
 
   it should "find the most repeated book in both books" in {
-    mostRepeatedWord() shouldBe "Unless"
+    mostRepeatedWord() shouldBe "better."
   }
 }
