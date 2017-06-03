@@ -66,6 +66,6 @@ class SetsSpec extends FlatSpec with Matchers with SharedSparkContext {
   }
 
   it should "find the most repeated book in both books" in {
-    mostRepeatedWord() shouldBe "better."
+    mostRepeatedWord() shouldBe "youth."
   }
 }

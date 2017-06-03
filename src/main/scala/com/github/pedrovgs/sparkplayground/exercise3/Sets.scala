@@ -39,7 +39,17 @@ object Sets extends App with SparkApp {
     frankensteinCombinedWithDorian.take(5)
 
   def mostRepeatedWord(): String =
-    intersectionOfBooks.map((_, 1)).reduceByKey((acc, n) => acc + n).sortBy(_._2).first()._1
+    intersectionOfBooks
+      .map((_, 1))
+      .reduceByKey((acc, n) => acc + n)
+      .max()(new Ordering[Tuple2[String, Int]]() {
+        override def compare(x: (String, Int), y: (String, Int)): Int = {
+          val repetitionsOrder = Ordering[Int].compare(x._2, y._2)
+          if (repetitionsOrder != 0) repetitionsOrder
+          else Ordering[String].compare(x._1, y._1)
+        }
+      })
+      ._1
 
   private def extractDistinctWords(fileName: String): RDD[String] = {
     val filePath = getClass.getResource(fileName).getPath
