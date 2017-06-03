@@ -38,6 +38,9 @@ object Sets extends App with SparkApp {
   def firstFiveCombinationsOfFrankensteinAndDorian(): Array[(String, String)] =
     frankensteinCombinedWithDorian.take(5)
 
+  def mostRepeatedWord(): String =
+    intersectionOfBooks.map((_, 1)).reduceByKey((acc, n) => acc + n).sortBy(_._2).first()._1
+
   private def extractDistinctWords(fileName: String): RDD[String] = {
     val filePath = getClass.getResource(fileName).getPath
     sparkContext.textFile(filePath).flatMap(_.split(" ")).filter(_.nonEmpty).distinct().persist()
@@ -69,4 +72,6 @@ object Sets extends App with SparkApp {
   pprint.pprintln(
     "This is the combinations of both books: "
       + frankensteinCombinedWithDorian.collect().mkString(","))
+  pprint.pprintln(
+    "This is the most repeated word we can find in both books: " + mostRepeatedWord())
 }
