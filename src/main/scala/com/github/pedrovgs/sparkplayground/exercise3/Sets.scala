@@ -14,9 +14,11 @@ object Sets extends App with SparkApp {
     .sortBy(_.length, ascending = false)
     .persist()
   private lazy val intersectionOfBooks: RDD[String] =
-    frankensteinWords.intersection(dorianGrayWords).persist()
+    frankensteinWords.intersection(dorianGrayWords)
   private lazy val frankensteinMinusDorian: RDD[String] =
-    frankensteinWords.subtract(dorianGrayWords).persist()
+    frankensteinWords.subtract(dorianGrayWords)
+  private lazy val frankensteinCombinedWithDorian =
+    frankensteinWords.cartesian(dorianGrayWords)
 
   def findFirstFiveFrankensteinWords(): Array[String] = frankensteinWords.take(5)
 
@@ -32,6 +34,9 @@ object Sets extends App with SparkApp {
   def getFrankensteinDifferentWordsCount(): Long = frankensteinWords.count()
 
   def getDorianGrayDifferentWordsCount(): Long = dorianGrayWords.count()
+
+  def firstFiveCombinationsOfFrankensteinAndDorian(): Array[(String, String)] =
+    frankensteinCombinedWithDorian.take(5)
 
   private def extractDistinctWords(fileName: String): RDD[String] = {
     val filePath = getClass.getResource(fileName).getPath
@@ -61,5 +66,7 @@ object Sets extends App with SparkApp {
     "The number of different words in Frankenstein is: " + getFrankensteinDifferentWordsCount)
   pprint.pprintln(
     "The number of different words in The Picture of Dorian Gray is: " + getDorianGrayDifferentWordsCount)
-
+  pprint.pprintln(
+    "This is the combinations of both books: "
+      + frankensteinCombinedWithDorian.collect().mkString(","))
 }

@@ -48,4 +48,12 @@ class SetsSpec extends FlatSpec with Matchers with SharedSparkContext {
   it should "know that The Picture of Dorian Gray contains more words than Frankenstein" in {
     getDorianGrayDifferentWordsCount() > getFrankensteinDifferentWordsCount() shouldBe true
   }
+
+  it should "find the first 5 combinations of Frakenstein and Dorian books words" in {
+    firstFiveCombinationsOfFrankensteinAndDorian shouldBe List(("Ah!", "young"),
+                                                               ("Ah!", "Ah!"),
+                                                               ("Ah!", "rises."),
+                                                               ("Ah!", "heroine."),
+                                                               ("Ah!", "House"))
+  }
 }
