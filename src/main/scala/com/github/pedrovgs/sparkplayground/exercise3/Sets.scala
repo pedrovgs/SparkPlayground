@@ -14,6 +14,8 @@ object Sets extends App with SparkApp {
     .persist()
   private lazy val intersectionOfBooks: RDD[String] =
     frankensteinWords.intersection(dorianGrayWords).persist()
+  private lazy val frankensteinMinusDorian: RDD[String] =
+    frankensteinWords.subtract(dorianGrayWords).persist()
 
   def findFirstFiveFrankensteinWords(): Array[String] = frankensteinWords.take(5)
 
@@ -23,9 +25,12 @@ object Sets extends App with SparkApp {
 
   def findFirstFiveWordsInBothBooks(): Array[String] = intersectionOfBooks.take(5)
 
+  def findFirstFiveWordsInFrankensteinAndNotInDorian(): Array[String] =
+    frankensteinMinusDorian.take(5)
+
   private def extractWords(fileName: String): RDD[String] = {
     val filePath = getClass.getResource(fileName).getPath
-    sparkContext.textFile(filePath).flatMap(_.split(" ")).filter(_.nonEmpty).persist()
+    sparkContext.textFile(filePath).flatMap(_.split(" ")).filter(_.nonEmpty).distinct().persist()
   }
 
   pprint.pprintln(
@@ -43,4 +48,8 @@ object Sets extends App with SparkApp {
     "This is the intersection of words in this two books: " + intersectionOfBooks
       .collect()
       .mkString(","))
+  pprint.pprintln(
+    "This is the list of words bein part of Frankenstein but not part of THe Picture of Dorian Gray: "
+      + frankensteinMinusDorian.collect().mkString(",")
+  )
 }
