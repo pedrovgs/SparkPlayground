@@ -12,8 +12,9 @@ This table contains all the exercises resolved in this repository sorted by goal
 
 | # | Goal | Statement | Code | Tests |
 | - | ---- | --------- | ---- | ----- |
-| 1 | Learn how to use ``SparkContext`` and some basic ``RDDs`` methods. | [El Quijote statement.](./statements/EL_QUIJOTE.md) | [ElQuijote.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijote.scala) | [ElQuijoteSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijoteSpec.scala) |
-| 2 | Learn how to parallelize Scala collections and work with them as ``RDDs``. | [Numerical series statement.](./statements/NUMERICAL_SERIES.md) | [NumericalSeries.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise2/NumericalSeries.scala) | [NumericalSeriesSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/NumericalSeriesSpec.scala) |
+| 1 | Learn how to use ``SparkContext`` and some basic ``RDDs`` methods. | [El Quijote.](./statements/EL_QUIJOTE.md) | [ElQuijote.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijote.scala) | [ElQuijoteSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijoteSpec.scala) |
+| 2 | Learn how to parallelize Scala collections and work with them as ``RDDs``. | [Numerical series.](./statements/NUMERICAL_SERIES.md) | [NumericalSeries.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise2/NumericalSeries.scala) | [NumericalSeriesSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/NumericalSeriesSpec.scala) |
+| 2 | Learn how to ``RDDs`` set transformations. | [Sets.](./statements/SETS.md) | [Sets.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise3/Sets.scala) | [SetsSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise3/SetsSpec.scala) |
 
 ## Build and test this project
 
