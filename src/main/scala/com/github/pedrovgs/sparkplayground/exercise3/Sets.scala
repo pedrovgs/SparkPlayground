@@ -42,7 +42,7 @@ object Sets extends App with SparkApp {
     intersectionOfBooks
       .map((_, 1))
       .reduceByKey((acc, n) => acc + n)
-      .max()(new Ordering[Tuple2[String, Int]]() {
+      .max()(new Ordering[(String, Int)]() {
         override def compare(x: (String, Int), y: (String, Int)): Int = {
           val repetitionsOrder = Ordering[Int].compare(x._2, y._2)
           if (repetitionsOrder != 0) repetitionsOrder
