@@ -6,8 +6,8 @@ Today we are going to use words from two awesome books, Frankenstein and The Pic
 
 * Get all the words you can find just in Frankenstein.
 * Get all the words you can find just in The Picture of Dorian Gray.
-* Get all the words you can find in both books.
-* Get the words that appear at the same time in both books.
+* Get all the words you can find in both books sorted using descending ordering by word length.
+* Get the words that appear at the same time in both books and not just the words that appears in just one of them.
 * Get all the words you can find in Frankenstein and not in The Picture of Dorian Gray.
 * Find the the book with more words.
 * Get all the possible combinations of words you can find in Frankenstein and The Picture of Dorian Gray.
