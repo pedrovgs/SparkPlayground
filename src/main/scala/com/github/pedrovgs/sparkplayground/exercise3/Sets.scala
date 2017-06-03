@@ -10,13 +10,18 @@ object Sets extends App with SparkApp {
     "/exercise3/the-picture-of-dorian-gray.txt")
   private lazy val bothBooksWordsSortedBySize: RDD[String] = frankensteinWords
     .union(dorianGrayWords)
-    .sortBy(_.length, false)
+    .sortBy(_.length, ascending = false)
+    .persist()
+  private lazy val intersectionOfBooks: RDD[String] =
+    frankensteinWords.intersection(dorianGrayWords).persist()
 
   def findFirstFiveFrankensteinWords(): Array[String] = frankensteinWords.take(5)
 
   def findFirstFiveDorianGrayWords(): Array[String] = dorianGrayWords.take(5)
 
   def findFirstTenWordsInBothBooks(): Array[String] = bothBooksWordsSortedBySize.take(10)
+
+  def findFirstFiveWordsInBothBooks(): Array[String] = intersectionOfBooks.take(5)
 
   private def extractWords(fileName: String): RDD[String] = {
     val filePath = getClass.getResource(fileName).getPath
@@ -34,4 +39,8 @@ object Sets extends App with SparkApp {
   pprint.pprintln(
     "This is the sum of words found in the two books sorted by word length: "
       + bothBooksWordsSortedBySize.collect().mkString(","))
+  pprint.pprintln(
+    "This is the intersection of words in this two books: " + intersectionOfBooks
+      .collect()
+      .mkString(","))
 }

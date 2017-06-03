@@ -32,4 +32,8 @@ class SetsSpec extends FlatSpec with Matchers with SharedSparkContext {
       "self-accusations.--Poor"
     )
   }
+
+  it should "find the first 5 words in the intersection of both books" in {
+    findFirstFiveWordsInBothBooks() shouldBe List("Ah!", "been", "breath", "older.", "knows")
+  }
 }
