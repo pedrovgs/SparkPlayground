@@ -1,6 +1,6 @@
 # SparkPlayground
 
-Playground for experimenting with [Apache Spark](https://spark.apache.org/) using [Scala](https://www.scala-lang.org/).
+Playground used to learn and experiment with [Apache Spark](https://spark.apache.org/) using [Scala](https://www.scala-lang.org/). Do you want to learn Apache Spark? Try to resolve the exercised proposed below.
 
 ![SparkLogo](./art/sparkLogo.png)
 
