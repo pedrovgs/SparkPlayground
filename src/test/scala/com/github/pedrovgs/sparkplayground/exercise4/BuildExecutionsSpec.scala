@@ -42,4 +42,14 @@ class BuildExecutionsSpec extends FlatSpec with Matchers with SharedSparkContext
   it should "find the fastest task" in {
     fastestTask() shouldBe ("validateSigningBetaDebugAndroidTest", 324119L)
   }
+
+  it should "find the first five task names sorted by task name" in {
+    findFirstFiveTasksNamesSortedByName() shouldBe List(
+      "verifyMode",
+      "validateSigningProductionRelease",
+      "validateSigningProductionDebugAndroidTest",
+      "validateSigningProductionDebug",
+      "validateSigningBetaRelease"
+    )
+  }
 }

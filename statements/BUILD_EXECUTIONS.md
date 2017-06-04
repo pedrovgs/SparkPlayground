@@ -20,5 +20,5 @@ Using a file obtained from a Java project using Gradle and Kuronometer you can f
 * Get a list of the slowest tasks.
 * Get a list of the fastest tasks.
 * Get a list of the task names sorted by task name.
-* Get a Scala Map[String, Long] keeping just the values with execution times greater or equal to 1 second.
+* Get a Scala Map[String, Long] keeping just the values with execution times greater or equal to 1 min.
 * Get the total execution time.

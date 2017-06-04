@@ -32,6 +32,8 @@ object BuildExecutions extends App with SparkApp with Resources {
 
   def fastestTask(): (String, Long) = reducedExecutionTimes.sortBy(_._2).first()
 
+  def findFirstFiveTasksNamesSortedByName(): Array[String] = reducedExecutionTimes.keys.top(5)
+
   private def toMilliseconds(ms: Long): Long = (ms milliseconds).toMinutes
 
   pprint.pprintln(
@@ -41,5 +43,6 @@ object BuildExecutions extends App with SparkApp with Resources {
   pprint.pprintln("This is the list of keys: " + listOfTasks())
   pprint.pprintln("This is the slowest task: " + slowestTask())
   pprint.pprintln("This is the fastest task: " + fastestTask())
-
+  pprint.pprintln(
+    "This is the first five task names sorted ascending: " + findFirstFiveTasksNamesSortedByName)
 }
