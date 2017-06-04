@@ -24,4 +24,14 @@ class BuildExecutionsSpec extends FlatSpec with Matchers with SharedSparkContext
       ("assembleProductionDebugUnitTest", 155)
     )
   }
+
+  it should "find all the build task names" in {
+    listOfTasks shouldBe List(
+      "transformClassesWithJarMergingForBetaRelease",
+      "assembleProductionDebugUnitTest",
+      "crashlyticsUploadDistributionProductionRelease",
+      "incrementalBetaDebugJavaCompilationSafeguard",
+      "generateBetaReleaseBuildConfig"
+    )
+  }
 }

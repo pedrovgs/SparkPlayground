@@ -26,11 +26,14 @@ object BuildExecutions extends App with SparkApp with Resources {
       .take(5)
       .toMap[String, Long]
 
-  def toMilliseconds(ms: Long): Long = (ms milliseconds).toMinutes
+  def listOfTasks(): Array[String] = reducedExecutionTimes.keys.take(5)
+
+  private def toMilliseconds(ms: Long): Long = (ms milliseconds).toMinutes
 
   pprint.pprintln(
     "This is the execution times of the first five task: " + firstFiveExecutionTimesGroupedByName())
   pprint.pprintln(
     "This is the execution times in minutes: " + firstFiveTasksExecutionTimesInMinutes())
+  pprint.pprintln("This is the list of keys: " + listOfTasks())
 
 }
