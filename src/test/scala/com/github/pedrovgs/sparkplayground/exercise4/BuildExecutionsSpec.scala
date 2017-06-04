@@ -34,4 +34,12 @@ class BuildExecutionsSpec extends FlatSpec with Matchers with SharedSparkContext
       "generateBetaReleaseBuildConfig"
     )
   }
+
+  it should "find the slowest task" in {
+    slowestTask() shouldBe ("connectedProductionDebugAndroidTest", 13446052122318L)
+  }
+
+  it should "find the fastest task" in {
+    fastestTask() shouldBe ("validateSigningBetaDebugAndroidTest", 324119L)
+  }
 }
