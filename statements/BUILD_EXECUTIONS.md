@@ -14,7 +14,7 @@ The first column contains the name of the task,  the second one the execution ti
 
 Using a file obtained from a Java project using Gradle and Kuronometer you can find in the project resources directory, could you answer the following questions using Spark?
 
-* Sum the execution times associated to every task.
+* Sum the execution times associated to every task sorted by the execution times using a descending sort.
 * Transform the execution time to minutes.
 * Get a list of all the tasks executed.
 * Get a list of the slowest tasks.

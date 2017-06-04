@@ -3,7 +3,9 @@ package com.github.pedrovgs.sparkplayground.exercise4
 import com.github.pedrovgs.{Resources, SparkApp}
 import org.apache.spark.rdd.RDD
 
+import scala.concurrent.duration._
 import scala.collection.Map
+import scala.language.postfixOps
 
 object BuildExecutions extends App with SparkApp with Resources {
 
@@ -12,11 +14,23 @@ object BuildExecutions extends App with SparkApp with Resources {
     .map(lines => lines.split(","))
     .map(parts => (parts(0), parts(1).toLong))
 
+  private lazy val reducedExecutionTimes: RDD[(String, Long)] =
+    executionTimes.reduceByKey((x, y) => x + y).persist()
+
   def firstFiveExecutionTimesGroupedByName(): Map[String, Long] =
-    executionTimes.reduceByKey((x, y) => x + y).take(5).toMap[String, Long]
+    reducedExecutionTimes.take(5).toMap[String, Long]
 
-  def tasksExecutionTimes(): Map[String, Long] = firstFiveExecutionTimesGroupedByName()
+  def firstFiveTasksExecutionTimesInMinutes(): Map[String, Long] =
+    reducedExecutionTimes
+      .map({ case (name, executionTime) => (name, toMilliseconds(executionTime)) })
+      .take(5)
+      .toMap[String, Long]
 
-  pprint.pprintln("This is the execution times of the first five task: " + tasksExecutionTimes())
+  def toMilliseconds(ms: Long): Long = (ms milliseconds).toMinutes
+
+  pprint.pprintln(
+    "This is the execution times of the first five task: " + firstFiveExecutionTimesGroupedByName())
+  pprint.pprintln(
+    "This is the execution times in minutes: " + firstFiveTasksExecutionTimesInMinutes())
 
 }
