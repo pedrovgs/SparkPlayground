@@ -1,9 +1,9 @@
 package com.github.pedrovgs.sparkplayground.exercise3
 
-import com.github.pedrovgs.SparkApp
+import com.github.pedrovgs.{Resources, SparkApp}
 import org.apache.spark.rdd.RDD
 
-object Sets extends App with SparkApp {
+object Sets extends App with SparkApp with Resources {
 
   private lazy val frankensteinWords: RDD[String] = extractDistinctWords(
     "/exercise3/frankenstein.txt")
@@ -52,7 +52,7 @@ object Sets extends App with SparkApp {
       ._1
 
   private def extractDistinctWords(fileName: String): RDD[String] = {
-    val filePath = getClass.getResource(fileName).getPath
+    val filePath = getFilePath(fileName)
     sparkContext
       .textFile(filePath)
       .flatMap(_.split(" "))
