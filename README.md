@@ -15,7 +15,7 @@ This table contains all the exercises resolved in this repository sorted by goal
 | 1 | Learn how to use ``SparkContext`` and some basic ``RDDs`` methods. | [El Quijote.](./statements/EL_QUIJOTE.md) | [ElQuijote.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijote.scala) | [ElQuijoteSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/ElQuijoteSpec.scala) |
 | 2 | Learn how to parallelize Scala collections and work with them as ``RDDs``. | [Numerical series.](./statements/NUMERICAL_SERIES.md) | [NumericalSeries.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise2/NumericalSeries.scala) | [NumericalSeriesSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise1/NumericalSeriesSpec.scala) |
 | 3 | Learn how to use set transformations for ``RDDs``. | [Sets.](./statements/SETS.md) | [Sets.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise3/Sets.scala) | [SetsSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise3/SetsSpec.scala) |
-| 4 | Learn how to use ``Pair  RDDs``. | [Build executions.](./statements/BuildExecution.md) | [BuildExecutions.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise4/BuildExecutions.scala) | [BuildExecutionsSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise4/BuildExecutionsSpec.scala) |
+| 4 | Learn how to use ``Pair  RDDs``. | [Build executions.](./statements/BUILD_EXECUTIONS.md) | [BuildExecutions.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise4/BuildExecutions.scala) | [BuildExecutionsSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise4/BuildExecutionsSpec.scala) |
 
 ## Build and test this project
 
