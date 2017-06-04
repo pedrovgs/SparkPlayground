@@ -1,18 +1,18 @@
 # Build Executions
 
-Build tools are used around the world to easily build software. Most of this build tools split the build in different tasks with different responsibilities and names. [Kuronometer](https://github.com/pedrovgs/Kuronometer) is a Gradle plugin which times every build task execution and saves the result into a csv file using this format:
+Build tools are used around the world to easily build software. Most of this build tools split the build in different tasks with different responsibilities and names. [Kuronometer](https://github.com/pedrovgs/Kuronometer) is a Gradle plugin which times every build task execution and saves the result into a file using this format:
 
-name,executionTime,timestamp
-clean,47067826,1495494522205
-clean,88495683,1495494522331
-clean,368078545,1495494522700
-androidJavadocs,2671770875,1495494525373
-androidJavadocsJar,87776466,1495494525461
-androidSourcesJar,33206924,1495494525495
+```
+preBuild,1024249,1495529611460
+preBetaDebugBuild,392334,1495529611482
+checkBetaDebugManifest,488727,1495529611483
+preBetaReleaseBuild,351065,1495529611483
+preProductionDebugBuild,259023,1495529611484
+```
 
-The first column contains the name of the task, the second one the execution time in milliseconds and the third one the execution timestamp.
+The first column contains the name of the task,  the second one the execution time in milliseconds, and the third column the task execution timestamp.
 
-Using a csv file obtained from a Java project using Gradle and Kuronometer you can find in the project resources directory, could you answer the following questions using Spark?
+Using a file obtained from a Java project using Gradle and Kuronometer you can find in the project resources directory, could you answer the following questions using Spark?
 
 * Sum the execution times associated to every task.
 * Transform the execution time to minutes.
