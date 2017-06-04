@@ -1,13 +1,14 @@
 package com.github.pedrovgs.sparkplayground.exercise4
 
-import com.github.pedrovgs.SparkApp
+import com.github.pedrovgs.{Resources, SparkApp}
 import org.apache.spark.rdd.RDD
+
 import scala.collection.Map
 
-object BuildExecutions extends App with SparkApp {
+object BuildExecutions extends App with SparkApp with Resources {
 
   private lazy val executionTimes: RDD[(String, Long)] = sparkContext
-    .textFile(getClass.getResource("/exercise4/buildExecutionTimes.txt").getPath)
+    .textFile(getFilePath("/exercise4/buildExecutionTimes.txt"))
     .map(lines => lines.split(","))
     .map(parts => (parts(0), parts(1).toLong))
 
