@@ -34,6 +34,13 @@ object BuildExecutions extends App with SparkApp with Resources {
 
   def findFirstFiveTasksNamesSortedByName(): Array[String] = reducedExecutionTimes.keys.top(5)
 
+  def findExecutionTasksGreaterThanOneMinute(): Map[String, Long] =
+    reducedExecutionTimes
+      .filter { case (_, executionTime) => executionTime > (1 hour).toNanos }
+      .collectAsMap()
+
+  def totalExecutionTime(): Double = reducedExecutionTimes.values.sum()
+
   private def toMilliseconds(ms: Long): Long = (ms milliseconds).toMinutes
 
   pprint.pprintln(
@@ -45,4 +52,8 @@ object BuildExecutions extends App with SparkApp with Resources {
   pprint.pprintln("This is the fastest task: " + fastestTask())
   pprint.pprintln(
     "This is the first five task names sorted ascending: " + findFirstFiveTasksNamesSortedByName)
+  pprint.pprintln(
+    "This is the list of build execution tasks greater than sixty minutes: " +
+      findExecutionTasksGreaterThanOneMinute())
+  pprint.pprintln("This is the total build execution time: " + totalExecutionTime())
 }

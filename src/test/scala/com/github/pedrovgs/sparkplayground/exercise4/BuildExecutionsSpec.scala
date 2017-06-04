@@ -52,4 +52,13 @@ class BuildExecutionsSpec extends FlatSpec with Matchers with SharedSparkContext
       "validateSigningBetaRelease"
     )
   }
+
+  it should "find build tasks greater than sixty minutes" in {
+    findExecutionTasksGreaterThanOneMinute() shouldBe Map(
+      ("connectedProductionDebugAndroidTest" -> 13446052122318L))
+  }
+
+  it should "calculate total execution time" in {
+    totalExecutionTime() shouldBe 4.2673302104925E13
+  }
 }
