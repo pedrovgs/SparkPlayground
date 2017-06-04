@@ -2,7 +2,6 @@ package com.github.pedrovgs.sparkplayground.exercise4
 
 import com.github.pedrovgs.{Resources, SparkApp}
 import org.apache.spark.rdd.RDD
-
 import scala.concurrent.duration._
 import scala.collection.Map
 import scala.language.postfixOps
