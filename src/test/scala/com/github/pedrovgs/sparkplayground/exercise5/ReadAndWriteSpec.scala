@@ -36,4 +36,18 @@ class ReadAndWriteSpec extends FlatSpec with Matchers with SharedSparkContext {
       .textFile("./outputs/firstUser.json")
       .first() shouldBe "{\"name\":{\"title\":\"mr\",\"first\":\"emre\",\"last\":\"adal\"}}"
   }
+
+  it should "read a CSV file, filter values associated to GameBoy sales and save it again" in {
+    readAndWriteCSV()
+    val gameBoySales = sqlContext.read
+      .format("com.databricks.spark.csv")
+      .option("header", "true")
+      .option("inferSchema", "true")
+      .load("./outputs/gameBoyGamesSales.csv")
+    gameBoySales
+      .select("Platform")
+      .collect()
+      .exists(row => row.getAs[String]("Platform") != "GB") shouldBe false
+    gameBoySales.count() shouldBe 98
+  }
 }

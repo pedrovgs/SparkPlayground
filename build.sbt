@@ -10,7 +10,8 @@ libraryDependencies ++=  Seq(
   "org.apache.spark" %% "spark-streaming" % Versions.spark,
   "org.apache.spark" %% "spark-sql" % Versions.spark,
   "org.apache.spark" %% "spark-mllib" % Versions.spark,
-  "com.lihaoyi" %% "pprint" % Versions.pprint
+  "com.lihaoyi" %% "pprint" % Versions.pprint,
+  "com.databricks" %% "spark-csv" % Versions.sparkCsv
 )
 
 libraryDependencies ++= Seq(

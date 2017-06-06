@@ -5,6 +5,7 @@ import java.io.File
 import com.github.pedrovgs.{Resources, SparkApp}
 import org.apache.commons.io.FileUtils
 import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.DataFrame
 
 import scala.util.Try
 
@@ -22,12 +23,35 @@ object ReadAndWrite extends App with SparkApp with Resources {
     writeUserAsJson(user)
   }
 
+  def readAndWriteCSV(): Unit = {
+    val gameBoySales = readGameBoySales()
+    writeAsCsv(gameBoySales)
+  }
+
+  private def writeAsCsv(gameBoySales: DataFrame) = {
+    val outputFile = "./outputs/gameBoyGamesSales.csv"
+    delete(outputFile)
+    gameBoySales.write
+      .format("com.databricks.spark.csv")
+      .option("header", "true")
+      .save(outputFile)
+  }
+
+  private def readGameBoySales(): DataFrame = {
+    sqlContext.read
+      .format("com.databricks.spark.csv")
+      .option("header", "true")
+      .option("inferSchema", "true")
+      .load(getFilePath("/exercise5/videoGamesSales.csv"))
+      .filter(row => row.getAs[String]("Platform") == "GB")
+  }
+
   private def readAndCapitalizeTextFile(): RDD[String] = {
     val resourceFile = getFilePath("/exercise5/textFile.txt")
     sparkContext.textFile(resourceFile).flatMap(_.split(" ")).map(line => line.capitalize)
   }
 
-  private def readFirstUserSortedByLastName(): User = {
+  private def readFirstUserSortedByLastName(): RDD[User] = {
     sparkContext
       .textFile(getFilePath("/exercise5/users.json"))
       .flatMap(line =>
@@ -35,14 +59,12 @@ object ReadAndWrite extends App with SparkApp with Resources {
           objectMapper.readValue(line, classOf[User])
         }.toOption)
       .sortBy(_.name.last)
-      .first()
   }
 
-  private def writeUserAsJson(user: User): Unit = {
+  private def writeUserAsJson(userRDD: RDD[User]): Unit = {
     val outputFile = getOutputFilePath("/firstUser.json")
     delete(outputFile)
-    sparkContext
-      .parallelize(List(user))
+    userRDD
       .map(user => {
         objectMapper.writeValueAsString(user)
       })
@@ -53,6 +75,4 @@ object ReadAndWrite extends App with SparkApp with Resources {
     FileUtils.deleteDirectory(new File(path))
   }
 
-  pprint.pprintln(
-    "This is the first user if we sort them by their last name: " + readFirstUserSortedByLastName())
 }
