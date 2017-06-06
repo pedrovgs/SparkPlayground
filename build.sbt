@@ -11,7 +11,6 @@ libraryDependencies ++=  Seq(
   "org.apache.spark" %% "spark-sql" % Versions.spark,
   "org.apache.spark" %% "spark-mllib" % Versions.spark,
   "com.lihaoyi" %% "pprint" % Versions.pprint
-
 )
 
 libraryDependencies ++= Seq(

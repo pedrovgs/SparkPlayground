@@ -76,3 +76,5 @@ project/plugins/project/
 .ensime_cache/
 .ensime
 
+# Spark exercise outputs folder
+outputs/*

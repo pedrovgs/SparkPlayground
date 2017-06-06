@@ -11,8 +11,6 @@ cache:
     - $HOME/.sbt/boot/
 
 script:
-    - sbt scalastyle
-    - sbt test:scalastyle
     - sbt scalafmt::test
     - sbt test:scalafmt::test
     - sbt test
