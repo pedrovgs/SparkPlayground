@@ -4,14 +4,27 @@ import java.io.File
 
 import com.github.pedrovgs.{Resources, SparkApp}
 import org.apache.commons.io.FileUtils
+import org.apache.spark.rdd.RDD
 
 import scala.util.Try
 
 object ReadAndWrite extends App with SparkApp with Resources {
 
+  def readAndWriteText(): Unit = {
+    val outputFile = "./outputs/capitalizedTextFile.txt"
+    delete(outputFile)
+    val capitalizedText = readAndCapitalizeTextFile()
+    capitalizedText.saveAsTextFile(outputFile)
+  }
+
   def readAndWriteJson(): Unit = {
     val user = readFirstUserSortedByLastName()
     writeUserAsJson(user)
+  }
+
+  private def readAndCapitalizeTextFile(): RDD[String] = {
+    val resourceFile = getFilePath("/exercise5/textFile.txt")
+    sparkContext.textFile(resourceFile).flatMap(_.split(" ")).map(line => line.capitalize)
   }
 
   private def readFirstUserSortedByLastName(): User = {
