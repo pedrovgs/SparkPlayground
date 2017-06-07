@@ -94,7 +94,7 @@ object ReadAndWrite extends App with SparkApp with Resources {
         Try {
           objectMapper.readValue(line, classOf[User])
         }.toOption)
-      .sortBy(_.name.first, true, 1)
+      .sortBy(_.name.first, ascending = true, 1)
   }
 
   private def writeUserAsJson(userRDD: RDD[User]): Unit = {
