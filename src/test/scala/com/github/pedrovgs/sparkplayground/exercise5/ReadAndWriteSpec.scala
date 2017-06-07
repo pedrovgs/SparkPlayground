@@ -1,5 +1,6 @@
 package com.github.pedrovgs.sparkplayground.exercise5
 
+import com.github.pedrovgs.sparkpayground.exercise5.model.ProtoUser
 import com.github.pedrovgs.sparkplayground.exercise5.ReadAndWrite._
 import com.holdenkarau.spark.testing.SharedSparkContext
 import org.scalatest.{FlatSpec, Matchers}
@@ -49,5 +50,12 @@ class ReadAndWriteSpec extends FlatSpec with Matchers with SharedSparkContext {
       .collect()
       .exists(row => row.getAs[String]("Platform") != "GB") shouldBe false
     gameBoySales.count() shouldBe 98
+  }
+
+  it should "read users data written in json, transform it into protocol buffer format and save it again" in {
+    readAndWriteProtocolBuffer()
+    sqlContext.read
+      .load("./outputs/protocolBufferUsers")
+      .count() shouldBe 50
   }
 }

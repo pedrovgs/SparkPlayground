@@ -2,10 +2,12 @@ package com.github.pedrovgs.sparkplayground.exercise5
 
 import java.io.File
 
+import com.github.pedrovgs.sparkpayground.exercise5.model.ProtoUser
 import com.github.pedrovgs.{Resources, SparkApp}
 import org.apache.commons.io.FileUtils
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.DataFrame
+import com.trueaccord.scalapb.spark._
 
 import scala.util.Try
 
@@ -19,13 +21,29 @@ object ReadAndWrite extends App with SparkApp with Resources {
   }
 
   def readAndWriteJson(): Unit = {
-    val user = readFirstUserSortedByLastName()
+    val user = readUsersSortedByName()
     writeUserAsJson(user)
   }
 
   def readAndWriteCSV(): Unit = {
     val gameBoySales = readGameBoySales()
     writeAsCsv(gameBoySales)
+  }
+
+  def readAndWriteProtocolBuffer(): Unit = {
+    val protoUsers =
+      readUsersSortedByName().map(u => ProtoUser(u.name.title, u.name.first, u.name.last))
+    sqlContext.protoToDataFrame(protoUsers).createOrReplaceTempView("users")
+    writeAsProtocolBufer
+  }
+
+  private def writeAsProtocolBufer = {
+    val outputFile = "./outputs/protocolBufferUsers"
+    delete(outputFile)
+    sqlContext
+      .sql("SELECT title, first, last FROM users WHERE title = 'mr'")
+      .write
+      .save(outputFile)
   }
 
   private def writeAsCsv(gameBoySales: DataFrame) = {
@@ -51,7 +69,7 @@ object ReadAndWrite extends App with SparkApp with Resources {
     sparkContext.textFile(resourceFile).flatMap(_.split(" ")).map(line => line.capitalize)
   }
 
-  private def readFirstUserSortedByLastName(): RDD[User] = {
+  private def readUsersSortedByName(): RDD[User] = {
     sparkContext
       .textFile(getFilePath("/exercise5/users.json"))
       .flatMap(line =>
