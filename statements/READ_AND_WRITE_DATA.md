@@ -9,4 +9,4 @@ Today we are going to use different formats for reading and writing data using A
 * Read a CSV file containing information related to video games sales obtained from the resources folder, extract the information related to just GameBoy games, and save this information as a CSV file.
 * Using the user data structure already created for the previous exercise, serialize some random users into a Protocol Buffers file, read it back, and check if everything is working as it should.
 * Using the video game data structure already created for a previous exercise, serialized some random video games into a object file, read it back, and check if everything is working as it should.
-* Using any of the previous already implemented
+* Using any of the previous already implemented files, compress it and read it as a compressed file using gzip.

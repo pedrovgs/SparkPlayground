@@ -42,6 +42,13 @@ object ReadAndWrite extends App with SparkApp with Resources {
     writeAsObjectFile(sales)
   }
 
+  def readAndWriteGzipFile(): Unit = {
+    val firstUser  = sparkContext.textFile(getFilePath("/exercise5/users.json.gz"))
+    val outputFile = "./outputs/users.txt"
+    delete(outputFile)
+    firstUser.saveAsTextFile(outputFile)
+  }
+
   private def writeAsObjectFile(sales: DataFrame) = {
     val outputFile = "./outputs/objectFile"
     delete(outputFile)

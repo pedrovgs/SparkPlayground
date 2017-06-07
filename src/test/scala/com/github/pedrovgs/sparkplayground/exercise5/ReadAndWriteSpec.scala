@@ -5,6 +5,8 @@ import com.github.pedrovgs.sparkplayground.exercise5.ReadAndWrite._
 import com.holdenkarau.spark.testing.SharedSparkContext
 import org.scalatest.{FlatSpec, Matchers}
 
+import scala.util.Try
+
 class ReadAndWriteSpec extends FlatSpec with Matchers with SharedSparkContext {
 
   "ReadAndWrite" should "read a plain text file, capitalize it and save it again into the outputs folder" in {
@@ -62,5 +64,17 @@ class ReadAndWriteSpec extends FlatSpec with Matchers with SharedSparkContext {
   it should "read game boy sales written in csv, and write it down as a object file" in {
     readAndWriteObjectFile()
     sparkContext.objectFile("./outputs/objectFile").count() shouldBe 98
+  }
+
+  it should "read a gzip file and write it down" in {
+    readAndWriteGzipFile()
+    sparkContext
+      .textFile("./outputs/users.txt")
+      .flatMap(line =>
+        Try {
+          val user = objectMapper.readValue(line, classOf[User])
+          user.name.first
+        }.toOption)
+      .first() shouldBe "florence"
   }
 }
