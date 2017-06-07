@@ -1,4 +1,4 @@
-# SparkPlayground
+# SparkPlayground [![Build Status](https://travis-ci.org/pedrovgs/SparkPlayground.svg?branch=master)](https://travis-ci.org/pedrovgs/SparkPlayground)
 
 Playground used to learn and experiment with [Apache Spark](https://spark.apache.org/) using [Scala](https://www.scala-lang.org/). Do you want to learn Apache Spark? Try to resolve the exercised proposed below.
 
