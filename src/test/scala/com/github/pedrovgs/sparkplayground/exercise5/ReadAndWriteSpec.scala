@@ -58,4 +58,9 @@ class ReadAndWriteSpec extends FlatSpec with Matchers with SharedSparkContext {
       .load("./outputs/protocolBufferUsers")
       .count() shouldBe 50
   }
+
+  it should "read game boy sales written in csv, and write it down as a object file" in {
+    readAndWriteObjectFile()
+    sparkContext.objectFile("./outputs/objectFile").count() shouldBe 98
+  }
 }

@@ -37,6 +37,17 @@ object ReadAndWrite extends App with SparkApp with Resources {
     writeAsProtocolBuffer()
   }
 
+  def readAndWriteObjectFile(): Unit = {
+    val sales = readGameBoySales()
+    writeAsObjectFile(sales)
+  }
+
+  private def writeAsObjectFile(sales: DataFrame) = {
+    val outputFile = "./outputs/objectFile"
+    delete(outputFile)
+    sales.rdd.saveAsObjectFile(outputFile)
+  }
+
   private def writeAsProtocolBuffer(): Unit = {
     val outputFile = "./outputs/protocolBufferUsers"
     delete(outputFile)
