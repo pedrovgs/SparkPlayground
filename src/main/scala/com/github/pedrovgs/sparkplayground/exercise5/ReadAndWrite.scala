@@ -34,10 +34,10 @@ object ReadAndWrite extends App with SparkApp with Resources {
     val protoUsers =
       readUsersSortedByName().map(u => ProtoUser(u.name.title, u.name.first, u.name.last))
     sqlContext.protoToDataFrame(protoUsers).createOrReplaceTempView("users")
-    writeAsProtocolBufer
+    writeAsProtocolBuffer()
   }
 
-  private def writeAsProtocolBufer = {
+  private def writeAsProtocolBuffer(): Unit = {
     val outputFile = "./outputs/protocolBufferUsers"
     delete(outputFile)
     sqlContext
