@@ -1,0 +1,8 @@
+syntax = "proto2";
+package com.github.pedrovgs.sparkpayground.exercise5;
+
+message ProtoUser {
+  required string title = 1;
+  required string first = 2;
+  required string last = 3;
+}

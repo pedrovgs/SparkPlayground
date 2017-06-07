@@ -6,5 +6,7 @@ object Versions {
   val scalaTest = "3.0.3"
   val scalaMock = "3.5.0"
   val scalaCheck = "1.13.4"
+  val sparkCsv = "1.5.0"
+  val sparkScalaPb = "0.1.7"
 
 }
