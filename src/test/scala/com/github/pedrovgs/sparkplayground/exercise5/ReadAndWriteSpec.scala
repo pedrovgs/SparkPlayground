@@ -1,6 +1,5 @@
 package com.github.pedrovgs.sparkplayground.exercise5
 
-import com.github.pedrovgs.sparkpayground.exercise5.model.ProtoUser
 import com.github.pedrovgs.sparkplayground.exercise5.ReadAndWrite._
 import com.holdenkarau.spark.testing.SharedSparkContext
 import org.scalatest.{FlatSpec, Matchers}
@@ -37,7 +36,7 @@ class ReadAndWriteSpec extends FlatSpec with Matchers with SharedSparkContext {
     readAndWriteJson()
     sparkContext
       .textFile("./outputs/firstUser.json")
-      .first() shouldBe "{\"name\":{\"title\":\"mr\",\"first\":\"emre\",\"last\":\"adal\"}}"
+      .first() shouldBe "{\"name\":{\"title\":\"mr\",\"first\":\"alcino\",\"last\":\"ferreira\"}}"
   }
 
   it should "read a CSV file, filter values associated to GameBoy sales and save it again" in {
