@@ -32,4 +32,12 @@ class MoviesSpec extends FlatSpec with Matchers with SharedSparkContext {
   it should "find the min number of likes" in {
     minNumberOfLikes() shouldBe 0
   }
+
+  it should "find the movies duration variance" in {
+    moviesDurationVariance() shouldBe 634.784748 +- 0.1
+  }
+
+  it should "find the movies duration standard deviation" in {
+    moviesStandardDeviation() shouldBe 25.1949 +- 0.1
+  }
 }

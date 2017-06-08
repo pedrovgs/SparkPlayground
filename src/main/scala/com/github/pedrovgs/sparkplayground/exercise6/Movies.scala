@@ -37,6 +37,11 @@ object Movies extends App with SparkApp {
     movies.map(_.facebookLikes).rdd
   }
 
+  private lazy val moviesDuration: RDD[Double] = {
+    import sqlContext.implicits._
+    movies.flatMap(movie => Option(movie.duration).map(_.toDouble)).rdd
+  }
+
   def numberOfMoviesDirectedByJamesCameron(): Long = {
     val counter = sparkContext.longAccumulator("JamesCameronMovies")
     movies.foreach { movie =>
@@ -62,8 +67,7 @@ object Movies extends App with SparkApp {
   }
 
   def totalDuration(): Double = {
-    import sqlContext.implicits._
-    movies.flatMap(movie => Option(movie.duration).map(_.toDouble)).rdd.sum()
+    moviesDuration.sum()
   }
 
   def maxNumberOfLikes(): Integer = {
@@ -72,6 +76,14 @@ object Movies extends App with SparkApp {
 
   def minNumberOfLikes(): Integer = {
     facebookLikes.min()
+  }
+
+  def moviesDurationVariance(): Double = {
+    moviesDuration.variance()
+  }
+
+  def moviesStandardDeviation(): Double = {
+    moviesDuration.stdev()
   }
 
 }
