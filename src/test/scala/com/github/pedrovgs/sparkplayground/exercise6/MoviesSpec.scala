@@ -9,7 +9,27 @@ class MoviesSpec extends FlatSpec with Matchers with SharedSparkContext {
     numberOfMoviesDirectedByJamesCameron() shouldBe 7
   }
 
-  it should "count the numer of movies directed by the top five directors" in {
+  it should "count the number of movies directed by the top five directors" in {
     numberOfMoviesDirectedByTheTopFiveDirectors() shouldBe 9
+  }
+
+  it should "count the number of movies" in {
+    numberOfMovies() shouldBe 5043
+  }
+
+  it should "calculate the mean of facebook likes per movie" in {
+    meanOfFacebookLikes() shouldBe 9699.063850882436 +- 0.1
+  }
+
+  it should "calculate the sum of movies duration" in {
+    totalDuration() shouldBe 539007.0 +- 0.1
+  }
+
+  it should "find the max number of likes" in {
+    maxNumberOfLikes() shouldBe 656730
+  }
+
+  it should "find the min number of likes" in {
+    minNumberOfLikes() shouldBe 0
   }
 }

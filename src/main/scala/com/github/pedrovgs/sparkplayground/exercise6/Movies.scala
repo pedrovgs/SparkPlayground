@@ -2,6 +2,7 @@ package com.github.pedrovgs.sparkplayground.exercise6
 
 import com.github.pedrovgs.SparkApp
 import com.github.pedrovgs.sparkplayground.exercise5.ReadAndWrite.getFilePath
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.Dataset
 
 object Movies extends App with SparkApp {
@@ -31,6 +32,11 @@ object Movies extends App with SparkApp {
       .map(_.directorName)
   }
 
+  private lazy val facebookLikes: RDD[Integer] = {
+    import sqlContext.implicits._
+    movies.map(_.facebookLikes).rdd
+  }
+
   def numberOfMoviesDirectedByJamesCameron(): Long = {
     val counter = sparkContext.longAccumulator("JamesCameronMovies")
     movies.foreach { movie =>
@@ -44,6 +50,28 @@ object Movies extends App with SparkApp {
   def numberOfMoviesDirectedByTheTopFiveDirectors(): Long = {
     val broadcastDirectors = sparkContext.broadcast[Array[String]](topFiveDirectors)
     movies.filter(movie => broadcastDirectors.value.contains(movie.directorName)).count()
+  }
+
+  def numberOfMovies(): Long = {
+    movies.count()
+  }
+
+  def meanOfFacebookLikes(): Double = {
+    import sqlContext.implicits._
+    movies.map(_.facebookLikes.toDouble).rdd.mean()
+  }
+
+  def totalDuration(): Double = {
+    import sqlContext.implicits._
+    movies.flatMap(movie => Option(movie.duration).map(_.toDouble)).rdd.sum()
+  }
+
+  def maxNumberOfLikes(): Integer = {
+    facebookLikes.max()
+  }
+
+  def minNumberOfLikes(): Integer = {
+    facebookLikes.min()
   }
 
 }
