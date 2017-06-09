@@ -17,6 +17,7 @@ This table contains all the exercises resolved in this repository sorted by goal
 | 3 | Learn how to use set transformations for ``RDDs``. | [Sets.](./statements/SETS.md) | [Sets.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise3/Sets.scala) | [SetsSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise3/SetsSpec.scala) |
 | 4 | Learn how to use ``Pair  RDDs``. | [Build executions.](./statements/BUILD_EXECUTIONS.md) | [BuildExecutions.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise4/BuildExecutions.scala) | [BuildExecutionsSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise4/BuildExecutionsSpec.scala) |
 | 5 | Learn how to read and save data using different formats. | [Read and write data.](./statements/READ_AND_WRITE_DATA.md) | [ReadAndWrite.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise5/ReadAndWrite.scala) | [ReadAndWriteSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise5/ReadAndWriteSpec.scala) |
+| 6 | Learn how to use shared variables and numeric operations. | [Movies.](./statements/MOVIES.md) | [Movies.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise6/Movies.scala) | [MoviesSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise6/MoviesSpec.scala) |
 
 ## Build and test this project
 

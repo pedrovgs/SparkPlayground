@@ -8,15 +8,15 @@ import org.apache.spark.sql.{SQLContext, SparkSession}
 
 trait SparkApp {
 
-  private val sparkSession: SparkSession = SparkSession
+  private lazy val sparkSession: SparkSession = SparkSession
     .builder()
     .appName("SparkPlayground")
     .master("local[*]")
     .getOrCreate()
-  val sparkContext: SparkContext = sparkSession.sparkContext
-  val sqlContext: SQLContext     = sparkSession.sqlContext
+  lazy val sparkContext: SparkContext = sparkSession.sparkContext
+  lazy val sqlContext: SQLContext     = sparkSession.sqlContext
 
-  val objectMapper: ObjectMapper = {
+  lazy val objectMapper: ObjectMapper = {
     val mapper = new ObjectMapper() with ScalaObjectMapper
     mapper.registerModule(DefaultScalaModule)
   }
