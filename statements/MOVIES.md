@@ -1,4 +1,4 @@
-# MOVIES
+# Movies
 
 The Internet Movie Database (abbreviated IMDb) is an online database of information related to films, television programs and video games, including cast, production crew, fictional characters, biographies, plot summaries, trivia and reviews, operated by IMDb.com, Inc., a subsidiary of Amazon. As of April 2017, IMDb has approximately 4.2 million titles (including episodes), 7.8 million personalities in its database, as well as 75 million registered users.
 
