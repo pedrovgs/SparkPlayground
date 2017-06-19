@@ -1,7 +1,8 @@
 package com.github.pedrovgs.sparkplayground.exercise2
 
-import com.github.pedrovgs.SparkApp
+import com.github.pedrovgs.sparkplayground.SparkApp
 import org.apache.spark.rdd.RDD
+
 import scala.annotation.tailrec
 import scala.util.Random
 

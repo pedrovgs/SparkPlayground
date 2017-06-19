@@ -1,4 +1,4 @@
-package com.github.pedrovgs
+package com.github.pedrovgs.sparkplayground
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule

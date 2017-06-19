@@ -29,6 +29,29 @@ To build and test this project you can execute ``sbt test``. You can also use ``
 ~ test-only *AnySpec // Runs specs matching with the filter passed as param.
 ``` 
 
+## Running on a cluster
+
+Spark applications are developed to run on a cluster. Before to run your app you need to generate a ``.jar`` file you can submit to the cluster to be executed. You can generate the ``sparkPlayground.jar`` file executing ``sbt assembly``. This will generate a binary file you can submit using ``spark-submit`` command. We will review the different params later. 
+
+If you want to submit your applications to a local cluster you have two options:
+
+* Initialize a spark-shell which will start a local Spark cluster:
+
+``spark-shell``
+
+* Using [Docker](https://www.docker.com/), start a Spark instance executing:
+
+``./startLocalSparkCluster.sh``
+
+After executing any of these commands you'll be able to access to the Spark UI by using the IP address logged in the terminal output.
+  
+In order to submit the application you can execute this command:
+
+```
+spark-submit 
+```
+
+
 Developed By
 ------------
 

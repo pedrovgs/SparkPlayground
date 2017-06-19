@@ -1,4 +1,4 @@
-package com.github.pedrovgs
+package com.github.pedrovgs.sparkplayground
 
 trait Resources {
   def getFilePath(name: String): String = getClass.getResource(name).getPath
