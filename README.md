@@ -35,13 +35,16 @@ Spark applications are developed to run on a cluster. Before to run your app you
 
 If you want to submit your applications to a local cluster you have two options:
 
-* Initialize a spark-shell which will start a local Spark cluster:
+* Submit any application to your local spark installation using the script:
 
-``spark-shell``
+``./submitToLocalSpark.sh``
 
 * Using [Docker](https://www.docker.com/), start a Spark instance executing:
 
-``docker/startLocalSparkCluster.sh``
+``
+cd docker
+./startLocalSparkCluster.sh
+``
 
 After executing any of these commands you'll be able to access to the Spark UI by using the IP address logged in the terminal output. If you use the default configuration the Spark UI will be available at ``http://localhost:8080/``.
   
