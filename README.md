@@ -48,7 +48,8 @@ After executing any of these commands you'll be able to access to the Spark UI b
 In order to submit the application you can execute this command:
 
 ```
-spark-submit 
+sbt assembly
+./submitToLocalSpark.sh
 ```
 
 

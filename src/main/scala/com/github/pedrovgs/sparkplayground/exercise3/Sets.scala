@@ -87,7 +87,7 @@ object Sets extends App with SparkApp with Resources {
     "The number of different words in The Picture of Dorian Gray is: " + getDorianGrayDifferentWordsCount)
   pprint.pprintln(
     "This is the combinations of both books: "
-      + frankensteinCombinedWithDorian.collect().mkString(","))
+      + firstFiveCombinationsOfFrankensteinAndDorian().mkString(","))
   pprint.pprintln(
     "This is the most repeated word we can find in both books: " + mostRepeatedWord())
 }
