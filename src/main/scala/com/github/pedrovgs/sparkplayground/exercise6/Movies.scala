@@ -86,4 +86,15 @@ object Movies extends App with SparkApp {
     moviesDuration.stdev()
   }
 
+  pprint.pprintln("This is the number of movies directed by James Cameron: " + numberOfMoviesDirectedByJamesCameron())
+  pprint.pprintln("This is the number of movies directed by the top five directors: " + numberOfMoviesDirectedByTheTopFiveDirectors())
+  pprint.pprintln("This is the total number of movies: " + numberOfMovies())
+  pprint.pprintln("This is the mean number of Facebook likes per movie: " + meanOfFacebookLikes())
+  pprint.pprintln("This is the total duration of our movies: " + totalDuration())
+  pprint.pprintln("This is the max number of Facebook likes found per movie: " + maxNumberOfLikes())
+  pprint.pprintln("This is the min number of Facebook likes found per movie: " + minNumberOfLikes())
+  pprint.pprintln("This is the movies duration variance: " + moviesDurationVariance())
+  pprint.pprintln("This is the movies standard deviation: " + moviesStandardDeviation())
+
+
 }
