@@ -111,4 +111,16 @@ object ReadAndWrite extends App with SparkApp with Resources {
     FileUtils.deleteDirectory(new File(path))
   }
 
+
+  pprint.pprintln("Let's read and write some files!")
+
+  readAndWriteText()
+  readAndWriteJson()
+  readAndWriteCSV()
+  readAndWriteProtocolBuffer()
+  readAndWriteObjectFile()
+  readAndWriteGzipFile()
+
+  pprint.pprintln("We are done! Take a look at the ./outputs folder if you want to se the results.")
+
 }
