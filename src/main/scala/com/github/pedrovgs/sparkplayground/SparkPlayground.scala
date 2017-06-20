@@ -7,14 +7,17 @@ import com.github.pedrovgs.sparkplayground.exercise4.BuildExecutions
 import com.github.pedrovgs.sparkplayground.exercise5.ReadAndWrite
 import com.github.pedrovgs.sparkplayground.exercise6.Movies
 
-object SparkPlayground extends App {
+object SparkPlayground extends App with SparkApp {
 
-  executeExercise(ElQuijote)
+  pprint.pprintln("Spark app name: " + sparkContext.appName)
+  pprint.pprintln("Spark app id: " + sparkContext.applicationId)
+
+  //executeExercise(ElQuijote)
   executeExercise(NumericalSeries)
-  executeExercise(Sets)
-  executeExercise(BuildExecutions)
-  executeExercise(ReadAndWrite)
-  executeExercise(Movies)
+  //executeExercise(Sets)
+  //executeExercise(BuildExecutions)
+  //executeExercise(ReadAndWrite)
+  //executeExercise(Movies)
 
   private def executeExercise(app: App): Unit = {
     pprint.pprintln("-----------------")

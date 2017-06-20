@@ -37,7 +37,10 @@ If you want to submit your applications to a local cluster you have two options:
 
 * Submit any application to your local spark installation using the script:
 
-``./submitToLocalSpark.sh``
+``
+sbt assembly
+./submitToLocalSpark.sh
+``
 
 * Using [Docker](https://www.docker.com/), start a Spark instance executing:
 
@@ -45,6 +48,8 @@ If you want to submit your applications to a local cluster you have two options:
 cd docker
 ./startLocalSparkCluster.sh
 ``
+
+Grab a coffee, this can take a while!
 
 After executing any of these commands you'll be able to access to the Spark UI by using the IP address logged in the terminal output. If you use the default configuration the Spark UI will be available at ``http://localhost:8080/``.
   

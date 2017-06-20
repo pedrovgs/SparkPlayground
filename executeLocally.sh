@@ -12,7 +12,7 @@ then
     cp -R src/main/resources* /tmp/resources/
     spark-submit \
       --class com.github.pedrovgs.sparkplayground.SparkPlayground \
-      --master spark://localhost:7077 \
+      --master local[*] \
       --deploy-mode client \
       target/scala-2.11/sparkPlayground.jar
 else

@@ -49,4 +49,3 @@ worker:
   volumes:
     - ./conf/worker:/conf
     - ./data:/tmp/data
-
