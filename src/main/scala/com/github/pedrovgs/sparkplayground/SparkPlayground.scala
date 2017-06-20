@@ -11,13 +11,15 @@ object SparkPlayground extends App with SparkApp {
 
   pprint.pprintln("Spark app name: " + sparkContext.appName)
   pprint.pprintln("Spark app id: " + sparkContext.applicationId)
+  pprint.pprintln("Spark uploaded to Spark executors:")
+  pprint.pprintln(sparkContext.listFiles())
 
-  //executeExercise(ElQuijote)
+  executeExercise(ElQuijote)
   executeExercise(NumericalSeries)
-  //executeExercise(Sets)
-  //executeExercise(BuildExecutions)
-  //executeExercise(ReadAndWrite)
-  //executeExercise(Movies)
+  executeExercise(Sets)
+  executeExercise(BuildExecutions)
+  executeExercise(ReadAndWrite)
+  executeExercise(Movies)
 
   private def executeExercise(app: App): Unit = {
     pprint.pprintln("-----------------")

@@ -13,7 +13,6 @@ libraryDependencies ++=  Seq(
   "org.apache.spark" %% "spark-sql" % Versions.spark % Provided,
   "org.apache.spark" %% "spark-mllib" % Versions.spark % Provided,
   "com.lihaoyi" %% "pprint" % Versions.pprint,
-  "com.databricks" %% "spark-csv" % Versions.sparkCsv,
   "com.trueaccord.scalapb" %% "sparksql-scalapb" % Versions.sparkScalaPb
 )
 

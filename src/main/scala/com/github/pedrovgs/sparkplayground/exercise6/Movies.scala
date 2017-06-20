@@ -10,10 +10,9 @@ object Movies extends App with SparkApp {
   private lazy val movies: Dataset[Movie] = {
     import sqlContext.implicits._
     sqlContext.read
-      .format("com.databricks.spark.csv")
       .option("header", "true")
       .option("inferSchema", "true")
-      .load(getFilePath("/exercise6/movies.csv"))
+      .csv(getFilePath("/exercise6/movies.csv"))
       .map(row => {
         val name          = row.getAs[String]("movie_title")
         val directorName  = row.getAs[String]("director_name")
