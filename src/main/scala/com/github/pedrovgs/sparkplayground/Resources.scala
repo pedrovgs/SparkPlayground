@@ -10,11 +10,11 @@ trait Resources {
     val tmpPath = "file:///tmp/resources" + name
     if (exists(jarPath)) {
       jarPath
-    } else if(exists(tmpPath)) {
+    } else if (exists(tmpPath)) {
       tmpPath
     } else {
       val fileName = name.substring(name.lastIndexOf("/") + 1)
-      "file://" +SparkFiles.get(fileName)
+      "file://" + SparkFiles.get(fileName)
     }
   }
 
