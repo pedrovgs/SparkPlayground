@@ -11,8 +11,11 @@ object SparkPlayground extends App with SparkApp {
 
   pprint.pprintln("Spark app name: " + sparkContext.appName)
   pprint.pprintln("Spark app id: " + sparkContext.applicationId)
-  pprint.pprintln("Spark uploaded to Spark executors:")
-  pprint.pprintln(sparkContext.listFiles())
+  val files = sparkContext.listFiles()
+  if(files.nonEmpty) {
+    pprint.pprintln("Spark uploaded to Spark executors:")
+    pprint.pprintln(files)
+  }
 
   executeExercise(ElQuijote)
   executeExercise(NumericalSeries)
