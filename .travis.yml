@@ -2,6 +2,9 @@ language: scala
 scala:
   - 2.12.2
 
+services:
+  - docker
+
 jdk:
   - oraclejdk8
 
@@ -10,8 +13,14 @@ cache:
     - $HOME/.ivy2/cache
     - $HOME/.sbt/boot/
 
+before_install:
+    - cd docker
+    - docker-compose up -d
+    - cd ..
+
 script:
     - sbt scalafmt::test
     - sbt test:scalafmt::test
     - sbt test
     - sbt assembly
+    - ./submitToDockerizedSpark.sh
