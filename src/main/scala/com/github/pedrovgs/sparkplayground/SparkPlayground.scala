@@ -17,7 +17,7 @@ object SparkPlayground extends App with SparkApp {
     pprint.pprintln(files)
   }
 
-  executeExercise(ElQuijote)
+  //executeExercise(ElQuijote)
   executeExercise(NumericalSeries)
   executeExercise(Sets)
   executeExercise(BuildExecutions)

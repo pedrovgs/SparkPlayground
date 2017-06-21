@@ -28,8 +28,5 @@ trait Resources {
 
   def getOutputFilePath(name: String): String = "./outputs/" + name
 
-  private def exists(path: String): Boolean = {
-    pprint.pprintln("Checking the existence of a file at path: " + path)
-    Files.exists(Paths.get(path))
-  }
+  private def exists(path: String): Boolean = Files.exists(Paths.get(path))
 }
