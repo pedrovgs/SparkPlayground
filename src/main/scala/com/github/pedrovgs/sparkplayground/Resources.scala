@@ -13,7 +13,7 @@ trait Resources {
       jarPath
     } else if (exists(volumePath)) {
       pprint.pprintln("Reading existing volume path at: " + volumePath)
-      "file://" + volumePath
+      "file://" + volumePath + "/"
     } else {
       val fileName   = name.substring(name.lastIndexOf("/") + 1)
       val workerPath = SparkFiles.get(fileName)
@@ -22,7 +22,7 @@ trait Resources {
       } else {
         pprint.pprintln("Couln't find file: " + fileName)
       }
-      "file://" + workerPath
+      "file://" + workerPath + "/"
     }
   }
 

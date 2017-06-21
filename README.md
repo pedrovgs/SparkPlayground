@@ -31,14 +31,24 @@ To build and test this project you can execute ``sbt test``. You can also use ``
 
 ## Running on a cluster
 
-Spark applications are developed to run on a cluster. Before to run your app you need to generate a ``.jar`` file you can submit to Spark to be executed. You can generate the ``sparkPlayground.jar`` file executing ``sbt assembly``. This will generate a binary file you can submit using ``spark-submit`` command.
+Spark applications are developed to run on a cluster. Before to run your app you need to generate a ``.jar`` file you can submit to Spark to be executed. You can generate the ``sparkPlayground.jar`` file executing ``sbt assembly``. This will generate a binary file you can submit using ``spark-submit`` command. Ensure your local Spark version is ``Spark 2.1.1``. 
 
-* Submit any application to your local spark installation using the script:
+You can submit this application to your local spark installation executing these commands:
 
 ``
 sbt assembly
 ./submitToLocalSpark.sh
 ``
+
+You can submit this application to a dockerized Spark cluster using these commands:
+
+```
+sbt assembly
+cd docker
+docker-compse up -d
+cd ..
+./submitToDockerizedSpark.sh
+```
 
 
 Developed By
