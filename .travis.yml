@@ -13,4 +13,5 @@ cache:
 script:
     - sbt scalafmt::test
     - sbt test:scalafmt::test
+    - sbt test
     - sbt assembly

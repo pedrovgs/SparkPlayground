@@ -9,6 +9,8 @@ fi
 which spark-submit
 if [ $? -eq 0 ]
 then
+    rm -rf /tmp/resources/
+    rm -rf docker/data/resources
     cp -R src/main/resources* /tmp/resources/
     cp -R src/main/resources* docker/data/resources
     spark-submit \

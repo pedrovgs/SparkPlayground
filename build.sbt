@@ -31,7 +31,7 @@ assemblyShadeRules in assembly := Seq(
   ShadeRule.rename("com.google.protobuf.**" -> "shadeproto.@1").inAll
 )
 
-
+test in assembly := {}
 fork in Test := true
 parallelExecution in Test := false
 javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled")

@@ -1,6 +1,5 @@
 package com.github.pedrovgs.sparkplayground
 
-import com.github.pedrovgs.sparkplayground.exercise1.ElQuijote
 import com.github.pedrovgs.sparkplayground.exercise2.NumericalSeries
 import com.github.pedrovgs.sparkplayground.exercise3.Sets
 import com.github.pedrovgs.sparkplayground.exercise4.BuildExecutions
@@ -12,12 +11,11 @@ object SparkPlayground extends App with SparkApp {
   pprint.pprintln("Spark app name: " + sparkContext.appName)
   pprint.pprintln("Spark app id: " + sparkContext.applicationId)
   val files = sparkContext.listFiles()
-  if(files.nonEmpty) {
+  if (files.nonEmpty) {
     pprint.pprintln("Spark uploaded to Spark executors:")
     pprint.pprintln(files)
   }
 
-  //executeExercise(ElQuijote)
   executeExercise(NumericalSeries)
   executeExercise(Sets)
   executeExercise(BuildExecutions)
