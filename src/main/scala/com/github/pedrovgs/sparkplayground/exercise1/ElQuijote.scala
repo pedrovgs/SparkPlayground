@@ -1,12 +1,14 @@
 package com.github.pedrovgs.sparkplayground.exercise1
 
-import com.github.pedrovgs.{Resources, SparkApp}
+import com.github.pedrovgs.sparkplayground.{Resources, SparkApp}
 import org.apache.spark.rdd.RDD
 
 object ElQuijote extends App with SparkApp with Resources {
 
-  private lazy val elQuijotePath               = getFilePath("/exercise1/el-quijote.txt")
-  private lazy val elQuijoteLines: RDD[String] = sparkContext.textFile(elQuijotePath)
+  private lazy val elQuijoteLines: RDD[String] = {
+    val elQuijotePath = getFilePath("/exercise1/el-quijote.txt")
+    sparkContext.textFile(elQuijotePath)
+  }
   private lazy val elQuijoteWords: RDD[String] = elQuijoteLines.flatMap(line => line.split(" "))
 
   def firstSentence(): String = elQuijoteLines.first()

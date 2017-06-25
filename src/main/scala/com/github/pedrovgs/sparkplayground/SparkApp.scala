@@ -1,4 +1,4 @@
-package com.github.pedrovgs
+package com.github.pedrovgs.sparkplayground
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
@@ -11,7 +11,6 @@ trait SparkApp {
   private lazy val sparkSession: SparkSession = SparkSession
     .builder()
     .appName("SparkPlayground")
-    .master("local[*]")
     .getOrCreate()
   lazy val sparkContext: SparkContext = sparkSession.sparkContext
   lazy val sqlContext: SQLContext     = sparkSession.sqlContext

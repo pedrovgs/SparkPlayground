@@ -1,6 +1,6 @@
 package com.github.pedrovgs.sparkplayground.exercise3
 
-import com.github.pedrovgs.{Resources, SparkApp}
+import com.github.pedrovgs.sparkplayground.{Resources, SparkApp}
 import org.apache.spark.rdd.RDD
 
 object Sets extends App with SparkApp with Resources {
@@ -87,7 +87,7 @@ object Sets extends App with SparkApp with Resources {
     "The number of different words in The Picture of Dorian Gray is: " + getDorianGrayDifferentWordsCount)
   pprint.pprintln(
     "This is the combinations of both books: "
-      + frankensteinCombinedWithDorian.collect().mkString(","))
+      + firstFiveCombinationsOfFrankensteinAndDorian().mkString(","))
   pprint.pprintln(
     "This is the most repeated word we can find in both books: " + mostRepeatedWord())
 }

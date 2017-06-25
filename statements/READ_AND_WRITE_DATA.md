@@ -1,4 +1,4 @@
-# SETS
+# Read and write data
 
 After some exercises, we've looked at a number of operations we can perform on our data ounce we have it distributed in Spark. So far our examples have loaded and saved all of their data from a native collection or regular files, so it's time to explore our options for loading and saving data using different formats.
 

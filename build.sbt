@@ -1,17 +1,18 @@
 name := "SparkPlayground"
 version := "1.0"
 scalaVersion := "2.11.11"
+assemblyJarName in assembly := "sparkPlayground.jar"
+mainClass in assembly := Some("com.github.pedrovgs.sparkplayground.SparkPlayground")
 
 enablePlugins(ScalafmtPlugin)
 CommandAliases.addCommandAliases()
 
 libraryDependencies ++=  Seq(
-  "org.apache.spark" %% "spark-core" % Versions.spark,
-  "org.apache.spark" %% "spark-streaming" % Versions.spark,
-  "org.apache.spark" %% "spark-sql" % Versions.spark,
-  "org.apache.spark" %% "spark-mllib" % Versions.spark,
+  "org.apache.spark" %% "spark-core" % Versions.spark % Provided,
+  "org.apache.spark" %% "spark-streaming" % Versions.spark % Provided,
+  "org.apache.spark" %% "spark-sql" % Versions.spark % Provided,
+  "org.apache.spark" %% "spark-mllib" % Versions.spark % Provided,
   "com.lihaoyi" %% "pprint" % Versions.pprint,
-  "com.databricks" %% "spark-csv" % Versions.sparkCsv,
   "com.trueaccord.scalapb" %% "sparksql-scalapb" % Versions.sparkScalaPb
 )
 
@@ -30,7 +31,9 @@ assemblyShadeRules in assembly := Seq(
   ShadeRule.rename("com.google.protobuf.**" -> "shadeproto.@1").inAll
 )
 
-
+test in assembly := {}
 fork in Test := true
 parallelExecution in Test := false
 javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled")
+
+assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false)

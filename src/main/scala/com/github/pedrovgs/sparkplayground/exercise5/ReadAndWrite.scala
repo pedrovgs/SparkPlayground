@@ -3,11 +3,11 @@ package com.github.pedrovgs.sparkplayground.exercise5
 import java.io.File
 
 import com.github.pedrovgs.sparkpayground.exercise5.model.ProtoUser
-import com.github.pedrovgs.{Resources, SparkApp}
+import com.github.pedrovgs.sparkplayground.{Resources, SparkApp}
+import com.trueaccord.scalapb.spark._
 import org.apache.commons.io.FileUtils
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.DataFrame
-import com.trueaccord.scalapb.spark._
 
 import scala.util.Try
 
@@ -110,5 +110,17 @@ object ReadAndWrite extends App with SparkApp with Resources {
   private def delete(path: String): Unit = {
     FileUtils.deleteDirectory(new File(path))
   }
+
+  pprint.pprintln("Let's read and write some files!")
+
+  readAndWriteText()
+  readAndWriteJson()
+  readAndWriteCSV()
+  readAndWriteProtocolBuffer()
+  readAndWriteObjectFile()
+  readAndWriteGzipFile()
+
+  pprint.pprintln(
+    "We are done! Take a look at the ./outputs folder if you want to se the results.")
 
 }

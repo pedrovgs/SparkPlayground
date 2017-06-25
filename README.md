@@ -18,6 +18,7 @@ This table contains all the exercises resolved in this repository sorted by goal
 | 4 | Learn how to use ``Pair  RDDs``. | [Build executions.](./statements/BUILD_EXECUTIONS.md) | [BuildExecutions.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise4/BuildExecutions.scala) | [BuildExecutionsSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise4/BuildExecutionsSpec.scala) |
 | 5 | Learn how to read and save data using different formats. | [Read and write data.](./statements/READ_AND_WRITE_DATA.md) | [ReadAndWrite.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise5/ReadAndWrite.scala) | [ReadAndWriteSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise5/ReadAndWriteSpec.scala) |
 | 6 | Learn how to use shared variables and numeric operations. | [Movies.](./statements/MOVIES.md) | [Movies.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise6/Movies.scala) | [MoviesSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise6/MoviesSpec.scala) |
+| 7 | Learn how to submit and execute Spark applications on a cluster. | [RunningOnACluster.](./statements/RUNNING_ON_A_CLUSTER.md) | [RunningOnACluster.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise7/RunningOnACluster.scala) | - |
 
 ## Build and test this project
 
@@ -27,6 +28,28 @@ To build and test this project you can execute ``sbt test``. You can also use ``
 ~ test // Runs every test in your project
 ~ test-only *AnySpec // Runs specs matching with the filter passed as param.
 ``` 
+
+## Running on a cluster
+
+Spark applications are developed to run on a cluster. Before to run your app you need to generate a ``.jar`` file you can submit to Spark to be executed. You can generate the ``sparkPlayground.jar`` file executing ``sbt assembly``. This will generate a binary file you can submit using ``spark-submit`` command. Ensure your local Spark version is ``Spark 2.1.1``. 
+
+You can submit this application to your local spark installation executing these commands:
+
+``
+sbt assembly
+./submitToLocalSpark.sh
+``
+
+You can submit this application to a dockerized Spark cluster using these commands:
+
+```
+sbt assembly
+cd docker
+docker-compse up -d
+cd ..
+./submitToDockerizedSpark.sh
+```
+
 
 Developed By
 ------------
