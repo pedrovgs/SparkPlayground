@@ -18,7 +18,7 @@ trait SparkApp extends App {
     .master(masterUrl())
     .getOrCreate()
   lazy val sparkContext: SparkContext = sparkSession.sparkContext
-  lazy val sqlContext: SQLContext = sparkSession.sqlContext
+  lazy val sqlContext: SQLContext     = sparkSession.sqlContext
 
   lazy val objectMapper: ObjectMapper = {
     val mapper = new ObjectMapper() with ScalaObjectMapper
@@ -27,9 +27,9 @@ trait SparkApp extends App {
 
   private def masterUrl(): String = {
     val defaultMasterUrl = "local[*]"
-    if (args == null) {
+    if (args == null || args.isEmpty) {
       defaultMasterUrl
-    }else {
+    } else {
       Option(args(0)).getOrElse(defaultMasterUrl)
     }
   }

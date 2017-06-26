@@ -18,7 +18,7 @@ object SparkPlayground extends SparkApp {
     pprint.pprintln(files)
   }
 
-  if(args != null && args.nonEmpty) {
+  if (args != null && args.nonEmpty) {
     pprint.pprintln("This is this full list of params used to execute the app:")
     pprint.pprintln(args)
   }

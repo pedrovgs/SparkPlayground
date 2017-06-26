@@ -15,7 +15,6 @@ then
     cp -R src/main/resources* docker/data/resources
     spark-submit \
       --class com.github.pedrovgs.sparkplayground.SparkPlayground \
-      --master spark://localhost:7077 \
       --deploy-mode client \
       target/scala-2.11/sparkPlayground.jar \
       spark://localhost:7077
