@@ -11,7 +11,7 @@ import org.apache.spark.sql.DataFrame
 
 import scala.util.Try
 
-object ReadAndWrite extends App with SparkApp with Resources {
+object ReadAndWrite extends SparkApp with Resources {
 
   def readAndWriteText(): Unit = {
     val outputFile = "./outputs/capitalizedTextFile.txt"

@@ -3,7 +3,7 @@ package com.github.pedrovgs.sparkplayground.exercise8
 import com.github.pedrovgs.sparkplayground.{Resources, SparkApp}
 import org.apache.spark.rdd.RDD
 
-object Kryo extends App with SparkApp with Resources {
+object Kryo extends SparkApp with Resources {
 
   private lazy val pokemons: RDD[Pokemon] = {
     val path = getFilePath("/exercise8/pokemon.csv")

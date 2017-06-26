@@ -7,7 +7,7 @@ import scala.collection.Map
 import scala.concurrent.duration._
 import scala.language.postfixOps
 
-object BuildExecutions extends App with SparkApp with Resources {
+object BuildExecutions extends SparkApp with Resources {
 
   private lazy val executionTimes: RDD[(String, Long)] = sparkContext
     .textFile(getFilePath("/exercise4/buildExecutionTimes.txt"))
