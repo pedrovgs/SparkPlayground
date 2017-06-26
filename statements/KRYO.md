@@ -4,4 +4,7 @@ Apache Spark’s default serialization relies on Java with the default readObjec
 
 As we've already used Google protocol buffers in a previous exercise this time we will try another serialization library named Kryo. Kryo is a fast and efficient object graph serialization framework for Java and Scala. The goals of the project are speed, efficiency, and an easy to use API. The project is useful any time objects need to be persisted, whether to a file, database, or over the network.
 
-Using Spark and Kryo could you find the fastest of the strongests pokemons?
+Using Spark and Kryo could you implement the following tasks?
+
+* Find the fastest of the strongest pokemon?
+* Configure your Spark config initialization to use Kryo as the default serializer for every class you use.

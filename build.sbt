@@ -8,10 +8,10 @@ enablePlugins(ScalafmtPlugin)
 CommandAliases.addCommandAliases()
 
 libraryDependencies ++=  Seq(
-  "org.apache.spark" %% "spark-core" % Versions.spark % Provided,
-  "org.apache.spark" %% "spark-streaming" % Versions.spark % Provided,
-  "org.apache.spark" %% "spark-sql" % Versions.spark % Provided,
-  "org.apache.spark" %% "spark-mllib" % Versions.spark % Provided,
+  "org.apache.spark" %% "spark-core" % Versions.spark,
+  "org.apache.spark" %% "spark-streaming" % Versions.spark,
+  "org.apache.spark" %% "spark-sql" % Versions.spark,
+  "org.apache.spark" %% "spark-mllib" % Versions.spark,
   "com.lihaoyi" %% "pprint" % Versions.pprint,
   "com.trueaccord.scalapb" %% "sparksql-scalapb" % Versions.sparkScalaPb
 )

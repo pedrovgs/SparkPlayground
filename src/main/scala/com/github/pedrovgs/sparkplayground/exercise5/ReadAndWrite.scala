@@ -2,8 +2,8 @@ package com.github.pedrovgs.sparkplayground.exercise5
 
 import java.io.File
 
-import com.github.pedrovgs.sparkpayground.exercise5.model.ProtoUser
 import com.github.pedrovgs.sparkplayground.{Resources, SparkApp}
+import com.github.pedrovgs.sparkplayground.exercise5.model.ProtoUser
 import com.trueaccord.scalapb.spark._
 import org.apache.commons.io.FileUtils
 import org.apache.spark.rdd.RDD

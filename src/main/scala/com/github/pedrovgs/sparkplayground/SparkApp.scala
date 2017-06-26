@@ -3,14 +3,19 @@ package com.github.pedrovgs.sparkplayground
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import com.fasterxml.jackson.module.scala.experimental.ScalaObjectMapper
-import org.apache.spark.SparkContext
 import org.apache.spark.sql.{SQLContext, SparkSession}
+import org.apache.spark.{SparkConf, SparkContext}
 
 trait SparkApp {
+
+  private lazy val conf: SparkConf =
+    new SparkConf().set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
 
   private lazy val sparkSession: SparkSession = SparkSession
     .builder()
     .appName("SparkPlayground")
+    .config(conf)
+    .master("local[*]")
     .getOrCreate()
   lazy val sparkContext: SparkContext = sparkSession.sparkContext
   lazy val sqlContext: SQLContext     = sparkSession.sqlContext
