@@ -6,6 +6,7 @@ import com.github.pedrovgs.sparkplayground.exercise4.BuildExecutions
 import com.github.pedrovgs.sparkplayground.exercise5.ReadAndWrite
 import com.github.pedrovgs.sparkplayground.exercise6.Movies
 import com.github.pedrovgs.sparkplayground.exercise8.Kryo
+import com.github.pedrovgs.sparkplayground.exercise9.Fifa
 
 object SparkPlayground extends SparkApp {
 
@@ -29,6 +30,7 @@ object SparkPlayground extends SparkApp {
   executeExercise(ReadAndWrite)
   executeExercise(Movies)
   executeExercise(Kryo)
+  executeExercise(Fifa)
 
   private def executeExercise(app: App): Unit = {
     pprint.pprintln("-----------------")
