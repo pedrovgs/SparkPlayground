@@ -5,3 +5,7 @@ FIFA, also known as FIFA Football or FIFA Soccer, is a series of football video 
 Using Spark SQL and a csv data set with information related to Fifa 2017 players, could you answer the following questions?
 
 * Who is the fastest player?
+* What's the penalties average value per player?
+* Who is the slowest player?
+* Could you get a list of the worst three players not being goal keepers?
+* Could you find the club with the max rating?
