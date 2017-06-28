@@ -20,6 +20,7 @@ This table contains all the exercises resolved in this repository sorted by goal
 | 6 | Learn how to use shared variables and numeric operations. | [Movies.](./statements/MOVIES.md) | [Movies.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise6/Movies.scala) | [MoviesSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise6/MoviesSpec.scala) |
 | 7 | Learn how to submit and execute Spark applications on a cluster. | [RunningOnACluster.](./statements/RUNNING_ON_A_CLUSTER.md) | [RunningOnACluster.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise7/RunningOnACluster.scala) | - |
 | 8 | Learn how to use Kryo serialization. | [Kryo.](./statements/KRYO.md) | [Kryo.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise8/Kryo.scala) | [KryoSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise8/KryoSpec.scala) |
+| 9 | Learn how to use Spark SQL. | [Fifa.](./statements/FIFA.md) | [Fifa.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise9/Fifa.scala) | [FifaSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise9/FifaSpec.scala) |
 
 ## Build and test this project
 
