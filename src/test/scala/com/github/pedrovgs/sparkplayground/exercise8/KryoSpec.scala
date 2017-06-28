@@ -1,6 +1,5 @@
 package com.github.pedrovgs.sparkplayground.exercise8
 
-import com.github.pedrovgs.sparkplayground.exercise8.Kryo._
 import com.holdenkarau.spark.testing.SharedSparkContext
 import org.scalatest.{FlatSpec, Matchers}
 
