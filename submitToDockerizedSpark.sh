@@ -15,9 +15,9 @@ then
     cp -R src/main/resources* docker/data/resources
     spark-submit \
       --class com.github.pedrovgs.sparkplayground.SparkPlayground \
-      --master spark://localhost:7077 \
       --deploy-mode client \
-      target/scala-2.11/sparkPlayground.jar
+      target/scala-2.11/sparkPlayground.jar \
+      spark://localhost:7077
 else
     echo "Review your Apache Spark installation. We can't find 'spark-submit' binary file."
 fi

@@ -1,5 +1,5 @@
 syntax = "proto2";
-package com.github.pedrovgs.sparkpayground.exercise5;
+package com.github.pedrovgs.sparkplayground.exercise5;
 
 message ProtoUser {
   required string title = 1;

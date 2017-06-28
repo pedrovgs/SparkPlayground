@@ -3,7 +3,7 @@ package com.github.pedrovgs.sparkplayground.exercise3
 import com.github.pedrovgs.sparkplayground.{Resources, SparkApp}
 import org.apache.spark.rdd.RDD
 
-object Sets extends App with SparkApp with Resources {
+object Sets extends SparkApp with Resources {
 
   private lazy val frankensteinWords: RDD[String] = extractDistinctWords(
     "/exercise3/frankenstein.txt")

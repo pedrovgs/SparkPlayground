@@ -5,15 +5,22 @@ import com.github.pedrovgs.sparkplayground.exercise3.Sets
 import com.github.pedrovgs.sparkplayground.exercise4.BuildExecutions
 import com.github.pedrovgs.sparkplayground.exercise5.ReadAndWrite
 import com.github.pedrovgs.sparkplayground.exercise6.Movies
+import com.github.pedrovgs.sparkplayground.exercise8.Kryo
 
-object SparkPlayground extends App with SparkApp {
+object SparkPlayground extends SparkApp {
 
   pprint.pprintln("Spark app name: " + sparkContext.appName)
   pprint.pprintln("Spark app id: " + sparkContext.applicationId)
+
   val files = sparkContext.listFiles()
   if (files.nonEmpty) {
     pprint.pprintln("Spark uploaded to Spark executors:")
     pprint.pprintln(files)
+  }
+
+  if (args != null && args.nonEmpty) {
+    pprint.pprintln("This is this full list of params used to execute the app:")
+    pprint.pprintln(args)
   }
 
   executeExercise(NumericalSeries)
@@ -21,6 +28,7 @@ object SparkPlayground extends App with SparkApp {
   executeExercise(BuildExecutions)
   executeExercise(ReadAndWrite)
   executeExercise(Movies)
+  executeExercise(Kryo)
 
   private def executeExercise(app: App): Unit = {
     pprint.pprintln("-----------------")

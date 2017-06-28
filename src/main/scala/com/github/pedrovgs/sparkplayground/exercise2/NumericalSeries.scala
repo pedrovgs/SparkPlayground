@@ -6,7 +6,7 @@ import org.apache.spark.rdd.RDD
 import scala.annotation.tailrec
 import scala.util.Random
 
-object NumericalSeries extends App with SparkApp {
+object NumericalSeries extends SparkApp {
 
   private lazy val numbers: RDD[Int] = sparkContext.parallelize(0 until Int.MaxValue)
   private lazy val randomNumbers: RDD[Int] =
