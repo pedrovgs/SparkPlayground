@@ -33,9 +33,9 @@ object Fifa extends SparkApp with Resources {
   lazy val worstThreePlayers: Array[String] = {
     fifaPlayers
       .sort("Speed", "Strength", "Stamina", "Balance", "Agility", "Shot_Power")
-      .limit(5)
       .filter(!_.getAs[String]("Preffered_Position").equalsIgnoreCase("GK"))
       .map(_.getAs[String]("Name"))
+      .limit(3)
       .collect()
   }
 

@@ -19,7 +19,7 @@ class FifaSpec extends FlatSpec with Matchers with SharedSparkContext {
   }
 
   it should "find the worst three players non being goalkeepers" in {
-    worstThreePlayers shouldBe Array()
+    worstThreePlayers shouldBe Array("Jérémie Bréchet", "Tommy Käßemodel", "Aaron Hughes")
   }
 
   it should "find the most rated club" in {
