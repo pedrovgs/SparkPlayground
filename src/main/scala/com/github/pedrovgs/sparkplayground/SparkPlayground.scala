@@ -32,7 +32,6 @@ object SparkPlayground extends SparkApp {
   executeExercise(Movies)
   executeExercise(Kryo)
   executeExercise(Fifa)
-  executeExercise(Logs)
 
   private def executeExercise(app: App): Unit = {
     pprint.pprintln("-----------------")

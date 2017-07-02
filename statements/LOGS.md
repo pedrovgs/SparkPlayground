@@ -6,3 +6,4 @@ Based on a log file you can find in the exercise resources and the Spark Streami
 
 * Print every "GET" requests received.
 * Print the date of every request received.
+* Print the status code of every response.
