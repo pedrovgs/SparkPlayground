@@ -6,10 +6,11 @@ import scala.concurrent.duration._
 
 object Logs extends SparkApp with Resources {
 
-  private val streamingTimeout: Long = (10 seconds).toMillis
+  private val streamingTimeout: Long = (100 seconds).toMillis
+
+  private def logsPath: String = getFilePath("/exercise10/")
 
   private lazy val logTraces: DStream[String] = {
-    val logsPath = getFilePath("/exercise10/logs.txt")
     streamingContext.textFileStream(logsPath)
   }
 
@@ -26,7 +27,7 @@ object Logs extends SparkApp with Resources {
     logTraces
       .map(line => {
         val start = line.indexOf("[") + 1
-        val stop  = line.indexOf("]") - 1
+        val stop  = line.indexOf("]")
         line.substring(start, stop)
       })
       .foreachRDD(rdd => {
@@ -39,7 +40,7 @@ object Logs extends SparkApp with Resources {
     logTraces
       .map(line => {
         val start = line.lastIndexOf("\"") + 2
-        val stop  = line.lastIndexOf(" ") - 1
+        val stop  = line.lastIndexOf(" ")
         line.substring(start, stop)
       })
       .foreachRDD(rdd => {
@@ -48,8 +49,10 @@ object Logs extends SparkApp with Resources {
       })
   }
 
+  pprint.pprintln("Listening changes at " + logsPath)
   printGetRequests()
   printRequestsDate()
+  printResponseCodes()
 
   streamingContext.start()
   streamingContext.awaitTerminationOrTimeout(streamingTimeout)
