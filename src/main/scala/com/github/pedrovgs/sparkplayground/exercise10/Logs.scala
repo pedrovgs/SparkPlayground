@@ -5,18 +5,33 @@ import org.apache.spark.streaming.dstream.DStream
 
 object Logs extends SparkApp with Resources {
 
-  private def logTraces(): DStream[String] = {
+  private lazy val logTraces: DStream[String] = {
     val logsPath = getFilePath("/exercise10/logs.txt")
     streamingContext.textFileStream(logsPath)
   }
 
-  def numberOfGetRequests(): Unit = {
-    logTraces().filter(_.contains("GET"))
-      .foreachRDD(rdd => pprint.pprintln(rdd.collect()))
+  def printGetRequests(): Unit = {
+    logTraces.filter(_.contains("GET"))
+      .foreachRDD(rdd => {
+        pprint.pprintln("GET request received")
+        pprint.pprintln(rdd.collect())
+      })
   }
 
-  pprint.pprintln("GET requests:")
-  numberOfGetRequests()
+  def printRequestsDate(): Unit = {
+    logTraces.map(line => {
+      val start = line.indexOf("[") + 1
+      val stop = line.indexOf("]") - 1
+      line.substring(start, stop)
+    })
+      .foreachRDD(rdd => {
+        pprint.pprintln("GET request received")
+        pprint.pprintln(rdd.collect())
+      })
+  }
+
+  printGetRequests()
+  printRequestsDate()
 
   streamingContext.start()
   streamingContext.awaitTermination()
