@@ -40,5 +40,4 @@ trait SparkApp extends App {
     }
   }
 
-
 }
