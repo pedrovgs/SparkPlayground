@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import com.fasterxml.jackson.module.scala.experimental.ScalaObjectMapper
 import org.apache.spark.sql.{SQLContext, SparkSession}
+import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.apache.spark.{SparkConf, SparkContext}
 
 trait SparkApp extends App {
@@ -19,6 +20,11 @@ trait SparkApp extends App {
     .getOrCreate()
   lazy val sparkContext: SparkContext = sparkSession.sparkContext
   lazy val sqlContext: SQLContext     = sparkSession.sqlContext
+  lazy val streamingContext: StreamingContext = {
+    val streamingContext = new StreamingContext(sparkContext, Seconds(1))
+    streamingContext.checkpoint("./checkpoint")
+    streamingContext
+  }
 
   lazy val objectMapper: ObjectMapper = {
     val mapper = new ObjectMapper() with ScalaObjectMapper
