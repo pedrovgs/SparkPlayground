@@ -1,5 +1,6 @@
 package com.github.pedrovgs.sparkplayground
 
+import com.github.pedrovgs.sparkplayground.exercise10.Logs
 import com.github.pedrovgs.sparkplayground.exercise2.NumericalSeries
 import com.github.pedrovgs.sparkplayground.exercise3.Sets
 import com.github.pedrovgs.sparkplayground.exercise4.BuildExecutions
@@ -31,6 +32,7 @@ object SparkPlayground extends SparkApp {
   executeExercise(Movies)
   executeExercise(Kryo)
   executeExercise(Fifa)
+  executeExercise(Logs)
 
   private def executeExercise(app: App): Unit = {
     pprint.pprintln("-----------------")
