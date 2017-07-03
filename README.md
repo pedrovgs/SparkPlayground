@@ -22,6 +22,7 @@ This table contains all the exercises resolved in this repository sorted by goal
 | 8 | Learn how to use Kryo serialization. | [Kryo.](./statements/KRYO.md) | [Kryo.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise8/Kryo.scala) | [KryoSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise8/KryoSpec.scala) |
 | 9 | Learn how to use Spark SQL. | [Fifa.](./statements/FIFA.md) | [Fifa.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise9/Fifa.scala) | [FifaSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise9/FifaSpec.scala) |
 | 10 | Learn how to use Spark Streaming. | [Logs.](./statements/LOGS.md) | [Logs.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise10/Logs.scala) | - |
+| 11 | Learn how to use Spark Machine Learning. | [MachineLearning.](./statements/MACHINE_LEARNING.md) | [MachineLearning.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise11/MachineLearning.scala) | - |
 
 ## Build and test this project
 
