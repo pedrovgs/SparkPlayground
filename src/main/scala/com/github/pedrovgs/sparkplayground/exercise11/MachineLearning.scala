@@ -20,13 +20,15 @@ object MachineLearning extends SparkApp {
     .option("inferSchema", "true")
     .csv(getFilePath("/exercise11/costaRicaEarthquakeTweets.csv"))
     .filter($"Informativeness".isNotNull)
-    .rdd.map(row => ( {
-    if (row.getAs[String]("Informativeness").equals("Not related")) {
-      1.0
-    } else {
-      0.0
-    }
-  }, row.getAs[String]("TweetText").toLowerCase.split(" ")))
+    .rdd
+    .map(row =>
+      ({
+        if (row.getAs[String]("Informativeness").equals("Not related")) {
+          1.0
+        } else {
+          0.0
+        }
+      }, row.getAs[String]("TweetText").toLowerCase.split(" ")))
     .toDF("label", "tweet")
     .cache()
 
@@ -40,7 +42,7 @@ object MachineLearning extends SparkApp {
   // Transform as labeled points
   val convertedResult = MLUtils.convertVectorColumnsFromML(result, "features")
   val data: RDD[LabeledPoint] = convertedResult.rdd.map(row => {
-    val label = row.getAs[Double]("label")
+    val label    = row.getAs[Double]("label")
     val features = row.getAs[DenseVector]("features")
     new LabeledPoint(label, features)
   })
@@ -48,12 +50,12 @@ object MachineLearning extends SparkApp {
   // Split data into training (60%) and test (40%).
 
   val splits: Array[RDD[LabeledPoint]] = data.randomSplit(Array(0.6, 0.4), seed = 11L)
-  val training: RDD[LabeledPoint] = splits(0).cache()
-  val test: RDD[LabeledPoint] = splits(1)
+  val training: RDD[LabeledPoint]      = splits(0).cache()
+  val test: RDD[LabeledPoint]          = splits(1)
 
   // Run training algorithm to build the model
   val numIterations: Int = 100
-  val model = SVMWithSGD.train(training, numIterations)
+  val model              = SVMWithSGD.train(training, numIterations)
 
   // Clear the default threshold.
   model.clearThreshold()
@@ -66,8 +68,8 @@ object MachineLearning extends SparkApp {
 
   // Get evaluation metrics.
   val metrics = new BinaryClassificationMetrics(scoreAndLabels)
-  val auPR = metrics.areaUnderPR()
-  val auROC = metrics.areaUnderROC()
+  val auPR    = metrics.areaUnderPR()
+  val auROC   = metrics.areaUnderROC()
 
   pprint.pprintln("Area under PR = " + auPR)
   pprint.pprintln("Area under ROC = " + auROC)
