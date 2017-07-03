@@ -5,7 +5,7 @@ import com.github.pedrovgs.sparkplayground.exercise5.ReadAndWrite.getFilePath
 import org.apache.spark.ml.feature.Word2Vec
 import org.apache.spark.mllib.classification.SVMWithSGD
 import org.apache.spark.mllib.evaluation.BinaryClassificationMetrics
-import org.apache.spark.mllib.linalg.DenseVector
+import org.apache.spark.mllib.linalg.{DenseVector, Vector}
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.mllib.util.MLUtils
 import org.apache.spark.rdd.RDD
@@ -23,7 +23,7 @@ object MachineLearning extends SparkApp {
     .rdd
     .map(row =>
       ({
-        if (row.getAs[String]("Informativeness").equals("Not related")) {
+        if (row.getAs[String]("Informativeness").equals("Related and informative")) {
           1.0
         } else {
           0.0
@@ -32,11 +32,12 @@ object MachineLearning extends SparkApp {
     .toDF("label", "tweet")
     .cache()
 
-  // Calculate features
-  val result = new Word2Vec()
+  private val word2Vector = new Word2Vec()
     .setInputCol("tweet")
     .setOutputCol("features")
     .fit(tweetsData)
+  // Calculate features
+  val result = word2Vector
     .transform(tweetsData)
 
   // Transform as labeled points
@@ -74,4 +75,18 @@ object MachineLearning extends SparkApp {
   pprint.pprintln("Area under PR = " + auPR)
   pprint.pprintln("Area under ROC = " + auROC)
 
+  pprint.pprintln("Let's classify some tweets!")
+  val tweetsToAnalyze = sparkContext
+    .parallelize(
+      List("Terremoto en San Francisco!", "Acabo de sentir un terremoto :S", "Mola miley cyrus"))
+    .map(_.split(" "))
+    .toDF("tweet")
+  val earthquakeTweetsResult = word2Vector.transform(tweetsToAnalyze)
+  val convertedEarthquakeTweetsResult =
+    MLUtils.convertVectorColumnsFromML(earthquakeTweetsResult, "features")
+  val earthquakeTweetsData: RDD[Vector] =
+    convertedEarthquakeTweetsResult.rdd.map(_.getAs[DenseVector]("features"))
+
+  val prediction = model.predict(earthquakeTweetsData)
+  pprint.pprintln(prediction.collect())
 }
