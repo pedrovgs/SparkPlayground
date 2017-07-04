@@ -4,4 +4,4 @@ Machine learning is the subfield of computer science that, according to Arthur S
 
 Apache Spark is a general purpose framework and it's not only focused on ML. Actually, Spark ML is just part of the Spark API. Based on this, we will implement an easy example using Spark ML just to review the basics.
 
-In this case we will follow the tutoral found [here](https://www.toptal.com/spark/introduction-to-apache-spark) in order to detect earthquake tweets.
+Using an SVM algorithm create a program to identify when tweets are related to earthquakes or not.
