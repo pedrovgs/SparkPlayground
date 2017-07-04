@@ -1,7 +1,9 @@
 package com.github.pedrovgs.sparkplayground
 
+import java.io.File
 import java.nio.file.{Files, Paths}
 
+import org.apache.commons.io.FileUtils
 import org.apache.spark.SparkFiles
 
 trait Resources {
@@ -27,6 +29,10 @@ trait Resources {
   }
 
   def getOutputFilePath(name: String): String = "./outputs/" + name
+
+  def delete(path: String): Unit = {
+    FileUtils.deleteDirectory(new File(path))
+  }
 
   private def exists(path: String): Boolean = Files.exists(Paths.get(path))
 }
