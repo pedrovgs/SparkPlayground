@@ -1,6 +1,6 @@
 # SparkPlayground [![Build Status](https://travis-ci.org/pedrovgs/SparkPlayground.svg?branch=master)](https://travis-ci.org/pedrovgs/SparkPlayground)
 
-Playground used to learn and experiment with [Apache Spark](https://spark.apache.org/) using [Scala](https://www.scala-lang.org/). Do you want to learn Apache Spark? Try to resolve the exercised proposed below.
+Playground used to learn and experiment with [Apache Spark](https://spark.apache.org/) using [Scala](https://www.scala-lang.org/). Do you want to learn Apache Spark? Try to resolve the exercised proposed.
 
 ![SparkLogo](./art/sparkLogo.png)
 
@@ -18,7 +18,7 @@ This table contains all the exercises resolved in this repository sorted by goal
 | 4 | Learn how to use ``Pair  RDDs``. | [Build executions.](./statements/BUILD_EXECUTIONS.md) | [BuildExecutions.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise4/BuildExecutions.scala) | [BuildExecutionsSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise4/BuildExecutionsSpec.scala) |
 | 5 | Learn how to read and save data using different formats. | [Read and write data.](./statements/READ_AND_WRITE_DATA.md) | [ReadAndWrite.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise5/ReadAndWrite.scala) | [ReadAndWriteSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise5/ReadAndWriteSpec.scala) |
 | 6 | Learn how to use shared variables and numeric operations. | [Movies.](./statements/MOVIES.md) | [Movies.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise6/Movies.scala) | [MoviesSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise6/MoviesSpec.scala) |
-| 7 | Learn how to submit and execute Spark applications on a cluster. | [RunningOnACluster.](./statements/RUNNING_ON_A_CLUSTER.md) | [RunningOnACluster.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise7/RunningOnACluster.scala) | - |
+| 7 | Learn how to submit and execute Spark applications on a cluster. | [RunningOnACluster.](./statements/RUNNING_ON_A_CLUSTER.md) | - | - |
 | 8 | Learn how to use Kryo serialization. | [Kryo.](./statements/KRYO.md) | [Kryo.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise8/Kryo.scala) | [KryoSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise8/KryoSpec.scala) |
 | 9 | Learn how to use Spark SQL. | [Fifa.](./statements/FIFA.md) | [Fifa.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise9/Fifa.scala) | [FifaSpec.scala](./src/test/scala/com/github/pedrovgs/sparkplayground/exercise9/FifaSpec.scala) |
 | 10 | Learn how to use Spark Streaming. | [Logs.](./statements/LOGS.md) | [Logs.scala](./src/main/scala/com/github/pedrovgs/sparkplayground/exercise10/Logs.scala) | - |
