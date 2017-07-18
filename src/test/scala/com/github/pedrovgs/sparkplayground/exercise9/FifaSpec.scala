@@ -7,7 +7,7 @@ import org.scalatest.{FlatSpec, Matchers}
 class FifaSpec extends FlatSpec with Matchers with SharedSparkContext {
 
   "Fifa" should "find the fastest player" in {
-    fastestPlayer shouldBe "Ralf Fährmann"
+    fastestPlayer shouldBe "Pierre-Emerick Aubameyang"
   }
 
   it should "calculate the average penalties per player" in {

@@ -17,7 +17,7 @@ object Fifa extends SparkApp with Resources {
     createTempView()
     sqlContext
       .sql(
-        "SELECT Name FROM fifa_players WHERE Speed = (SELECT Max(age) as Max_Speed FROM fifa_players) LIMIT 1")
+        "SELECT Name FROM fifa_players WHERE Speed = (SELECT Max(Speed) as Max_Speed FROM fifa_players) LIMIT 1")
       .first()
       .getAs[String]("Name")
   }
