@@ -20,6 +20,7 @@ Using this file and Apache Spark answer the following questions:
  * Filter just the positive tweets and adjust the number of partitions making them slower.
  * Repartition the tweets data set to just 2 partitions manually.
  * Repartition and sort tweets by author.
+ * Persist any of the already created RDDs using different storage strategies.
 
 
 **As most of the questions should be answered using pair RDDs, don't use Spark SQL to answer these questions, use just regular pair RDDs please.**

@@ -3,12 +3,13 @@ package com.github.pedrovgs.sparkplayground.exercise12
 import com.github.pedrovgs.sparkplayground.{Resources, SparkApp}
 import org.apache.spark.Partitioner
 import org.apache.spark.rdd.RDD
+import org.apache.spark.storage.StorageLevel
 
 object Tweets extends SparkApp with Resources {
 
   private lazy val plainTweets: RDD[Array[String]] = readTweets("/exercise12/tweets.csv")
 
-  private val positiveTweets = plainTweets
+  private lazy val positiveTweets = plainTweets
     .filter { values =>
       values(0).toInt == 4
     }
@@ -72,11 +73,38 @@ object Tweets extends SparkApp with Resources {
     "The number of words associated to positive tweets plus extra tweets is: " + positiveWordsCount2)
   pprint.pprintln(
     "The number of words associated to negative tweets plus extra tweets is: " + negativeWordsCount2)
+  pprint.pprintln("Let's execute a time command using pipe")
   tweetsBySentiments.pipe("time")
+  pprint.pprintln("Let's play with the RDD partitions!")
   positiveTweets.coalesce(positiveTweets.partitions.length - 1)
   plainTweets.repartition(2)
   everyTweetBySentiments.repartitionAndSortWithinPartitions(
     Partitioner.defaultPartitioner(everyTweetBySentiments))
+
+  // cache() method performs the same effect than persist.
+  // persist() method invocation is going to save the RDD content
+  // into memory without serializing it!
+  pprint.pprintln("Let's cache, persist and unpersist some RDDs")
+  extraTweetsBySentiments.persist()
+  extraTweetsBySentiments.unpersist(true)
+  extraTweetsBySentiments.persist(StorageLevel.DISK_ONLY)
+  extraTweetsBySentiments.unpersist(true)
+  extraTweetsBySentiments.persist(StorageLevel.DISK_ONLY_2)
+  extraTweetsBySentiments.unpersist(true)
+  extraTweetsBySentiments.persist(StorageLevel.MEMORY_AND_DISK)
+  extraTweetsBySentiments.unpersist(true)
+  extraTweetsBySentiments.persist(StorageLevel.MEMORY_AND_DISK_2)
+  extraTweetsBySentiments.unpersist(true)
+  extraTweetsBySentiments.persist(StorageLevel.MEMORY_AND_DISK_SER)
+  extraTweetsBySentiments.unpersist(true)
+  extraTweetsBySentiments.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+  extraTweetsBySentiments.unpersist(true)
+  extraTweetsBySentiments.persist(StorageLevel.MEMORY_ONLY_SER)
+  extraTweetsBySentiments.unpersist(true)
+  extraTweetsBySentiments.persist(StorageLevel.MEMORY_ONLY_SER_2)
+  extraTweetsBySentiments.unpersist(true)
+  extraTweetsBySentiments.persist(StorageLevel.OFF_HEAP)
+  extraTweetsBySentiments.unpersist()
 
   private def readTweets(path: String): RDD[Array[String]] =
     sparkContext
