@@ -15,15 +15,12 @@ class TweetsSpec extends FlatSpec with Matchers with SharedSparkContext {
   }
 
   it should "find the number of words associated to positive tweets" in {
+    positiveTweetsCount shouldBe positiveWordsCountedByKey
     positiveWordsCount shouldBe 12093023
   }
 
   it should "find the number of words associated to negative tweets" in {
     negativeWordsCount shouldBe 24779363
-  }
-
-  it should "find the number of words associated to positive tweets plus extra tweets" in {
-    positiveWordsCount2 shouldBe 424350298
   }
 
   it should "find the number of words associated to negative tweets plus extra tweets" in {

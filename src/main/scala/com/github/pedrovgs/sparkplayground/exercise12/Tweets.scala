@@ -40,6 +40,13 @@ object Tweets extends SparkApp with Resources {
     }
     .cache()
 
+  private lazy val everyTweetBySentimentsWithCogroup: RDD[(String, String)] = tweetsBySentiments
+    .cogroup(extraTweetsBySentiments)
+    .mapValues {
+      case (t1, t2) => (t1 ++ t2).toString()
+    }
+    .cache()
+
   lazy val mostTweetedAuthor: String = plainTweets
     .map { values: Array[String] =>
       val author = values(4)
@@ -63,11 +70,18 @@ object Tweets extends SparkApp with Resources {
 
   lazy val positiveWordsCount2: Long = countSentimentWords(everyTweetBySentiments, "4")
 
+  lazy val positiveWordsCountWithCogroup: Long =
+    countSentimentWords(everyTweetBySentimentsWithCogroup, "4")
+
   lazy val negativeWordsCount2: Long = countSentimentWords(everyTweetBySentiments, "0")
+
+  lazy val positiveWordsCountedByKey: Long = countSentimentWords2(tweetsBySentiments, "4")
 
   pprint.pprintln("The author with more tweets is:" + mostTweetedAuthor)
   pprint.pprintln("The number of positive tweets is: " + positiveTweetsCount)
   pprint.pprintln("The number of words associated to positive tweets is: " + positiveWordsCount)
+  pprint.pprintln(
+    "The number of words associated to positive tweets is: " + positiveWordsCountedByKey)
   pprint.pprintln("The number of words associated to negative tweets is: " + negativeWordsCount)
   pprint.pprintln(
     "The number of words associated to positive tweets plus extra tweets is: " + positiveWordsCount2)
@@ -118,5 +132,11 @@ object Tweets extends SparkApp with Resources {
       .mapValues(_.length)
       .aggregateByKey(0)(_ + _, _ + _)
       .collectAsMap()(sentiment)
+  }
+
+  private def countSentimentWords2(tweets: RDD[(String, String)], sentiment: String) = {
+    tweets
+      .mapValues(_.length)
+      .countByKey()(sentiment)
   }
 }
