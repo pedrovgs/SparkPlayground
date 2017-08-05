@@ -1,6 +1,7 @@
 package com.github.pedrovgs.sparkplayground
 
 import com.github.pedrovgs.sparkplayground.exercise11.MachineLearning
+import com.github.pedrovgs.sparkplayground.exercise12.Tweets
 import com.github.pedrovgs.sparkplayground.exercise2.NumericalSeries
 import com.github.pedrovgs.sparkplayground.exercise3.Sets
 import com.github.pedrovgs.sparkplayground.exercise4.BuildExecutions
@@ -33,6 +34,7 @@ object SparkPlayground extends SparkApp {
   executeExercise(Kryo)
   executeExercise(Fifa)
   executeExercise(MachineLearning)
+  executeExercise(Tweets)
 
   private def executeExercise(app: App): Unit = {
     pprint.pprintln("-----------------")

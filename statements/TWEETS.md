@@ -23,4 +23,6 @@ Using this file and Apache Spark answer the following questions:
 
 
 **As most of the questions should be answered using pair RDDs, don't use Spark SQL to answer these questions, use just regular pair RDDs please.**
+
+***Think if you should ``cache`` or ``persist`` some of your RDDs! The file named ``tweets.csv`` contains 40000 tweets.***
  

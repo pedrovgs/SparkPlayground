@@ -1,11 +1,18 @@
 package com.github.pedrovgs.sparkplayground.exercise12
 
 import com.github.pedrovgs.sparkplayground.{Resources, SparkApp}
+import org.apache.spark.Partitioner
 import org.apache.spark.rdd.RDD
 
 object Tweets extends SparkApp with Resources {
 
   private lazy val plainTweets: RDD[Array[String]] = readTweets("/exercise12/tweets.csv")
+
+  private val positiveTweets = plainTweets
+    .filter { values =>
+      values(0).toInt == 4
+    }
+    .cache()
 
   private lazy val plainExtraTweets: RDD[Array[String]] = readTweets("/exercise12/tweets2.csv")
 
@@ -46,10 +53,7 @@ object Tweets extends SparkApp with Resources {
     .first()
     ._1
 
-  lazy val positiveTweetsCount: Long = plainTweets
-    .filter { values =>
-      values(0).toInt == 4
-    }
+  lazy val positiveTweetsCount: Long = positiveTweets
     .count()
 
   lazy val positiveWordsCount: Long = countSentimentWords(tweetsBySentiments, "4")
@@ -68,6 +72,11 @@ object Tweets extends SparkApp with Resources {
     "The number of words associated to positive tweets plus extra tweets is: " + positiveWordsCount2)
   pprint.pprintln(
     "The number of words associated to negative tweets plus extra tweets is: " + negativeWordsCount2)
+  tweetsBySentiments.pipe("time")
+  positiveTweets.coalesce(positiveTweets.partitions.length - 1)
+  plainTweets.repartition(2)
+  everyTweetBySentiments.repartitionAndSortWithinPartitions(
+    Partitioner.defaultPartitioner(everyTweetBySentiments))
 
   private def readTweets(path: String): RDD[Array[String]] =
     sparkContext
