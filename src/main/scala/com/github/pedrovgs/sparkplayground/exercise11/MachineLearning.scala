@@ -58,9 +58,6 @@ object MachineLearning extends SparkApp with Resources {
   val numIterations: Int = 100
   val svmModel           = SVMWithSGD.train(training, numIterations)
 
-  // Clear the default threshold.
-  svmModel.clearThreshold()
-
   // Compute raw scores on the test set.
   val scoreAndLabels = test.map { point =>
     val score = svmModel.predict(point.features)
@@ -105,10 +102,10 @@ object MachineLearning extends SparkApp with Resources {
 
   val predictionResult: RDD[(String, Double)] = originalTweets.zip(prediction)
   pprint.pprintln(
-    "The following table shows the probability a tweet has to be a real earthquake informative tweet:")
+    "The following table shows the class a tweet has to be a real earthquake informative tweet. Class 1 -> earthquake related. Class 0 -> Non related:")
   pprint.pprintln(
     predictionResult
-      .map(tuple => "Tweet: " + tuple._1 + " - Probability: " + tuple._2)
+      .map(tuple => "Tweet: " + tuple._1 + " - Class: " + tuple._2)
       .collect())
 
 }
