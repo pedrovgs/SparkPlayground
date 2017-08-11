@@ -10,110 +10,16 @@ import scala.util.Try
 
 object ReadAndWrite extends SparkApp with Resources {
 
-  def readAndWriteText(): Unit = {
-    val outputFile = "./outputs/capitalizedTextFile.txt"
-    delete(outputFile)
-    val capitalizedText = readAndCapitalizeTextFile()
-    capitalizedText.saveAsTextFile(outputFile)
-  }
+  def readAndWriteText(): Unit = ???
 
-  def readAndWriteJson(): Unit = {
-    val user = readUsersSortedByName()
-    writeUserAsJson(user)
-  }
+  def readAndWriteJson(): Unit = ???
 
-  def readAndWriteCSV(): Unit = {
-    val gameBoySales = readGameBoySales()
-    writeAsCsv(gameBoySales)
-  }
+  def readAndWriteCSV(): Unit = ???
 
-  def readAndWriteProtocolBuffer(): Unit = {
-    val protoUsers =
-      readUsersSortedByName().map(u => ProtoUser(u.name.title, u.name.first, u.name.last))
-    sqlContext.protoToDataFrame(protoUsers).createOrReplaceTempView("users")
-    writeAsProtocolBuffer()
-  }
+  def readAndWriteProtocolBuffer(): Unit = ???
 
-  def readAndWriteObjectFile(): Unit = {
-    val sales = readGameBoySales()
-    writeAsObjectFile(sales)
-  }
+  def readAndWriteObjectFile(): Unit = ???
 
-  def readAndWriteGzipFile(): Unit = {
-    val firstUser  = sparkContext.textFile(getFilePath("/exercise5/users.json.gz"))
-    val outputFile = "./outputs/users.txt"
-    delete(outputFile)
-    firstUser.saveAsTextFile(outputFile)
-  }
-
-  private def writeAsObjectFile(sales: DataFrame) = {
-    val outputFile = "./outputs/objectFile"
-    delete(outputFile)
-    sales.rdd.saveAsObjectFile(outputFile)
-  }
-
-  private def writeAsProtocolBuffer(): Unit = {
-    val outputFile = "./outputs/protocolBufferUsers"
-    delete(outputFile)
-    sqlContext
-      .sql("SELECT title, first, last FROM users WHERE title = 'mr'")
-      .write
-      .save(outputFile)
-  }
-
-  private def writeAsCsv(gameBoySales: DataFrame) = {
-    val outputFile = "./outputs/gameBoyGamesSales.csv"
-    delete(outputFile)
-    gameBoySales.write
-      .format("com.databricks.spark.csv")
-      .option("header", "true")
-      .save(outputFile)
-  }
-
-  private def readGameBoySales(): DataFrame = {
-    sqlContext.read
-      .format("com.databricks.spark.csv")
-      .option("header", "true")
-      .option("inferSchema", "true")
-      .load(getFilePath("/exercise5/videoGamesSales.csv"))
-      .filter(row => row.getAs[String]("Platform") == "GB")
-  }
-
-  private def readAndCapitalizeTextFile(): RDD[String] = {
-    val resourceFile = getFilePath("/exercise5/textFile.txt")
-    sparkContext.textFile(resourceFile).flatMap(_.split(" ")).map(line => line.capitalize)
-  }
-
-  private def readUsersSortedByName(): RDD[User] = {
-    sparkContext
-      .textFile(getFilePath("/exercise5/users.json"))
-      .flatMap(line =>
-        Try {
-          objectMapper.readValue(line, classOf[User])
-        }.toOption)
-      .sortBy(_.name.first, ascending = true, 1)
-  }
-
-  private def writeUserAsJson(userRDD: RDD[User]): Unit = {
-    val outputFile = getOutputFilePath("/firstUser.json")
-    delete(outputFile)
-    userRDD
-      .map(user => {
-        objectMapper.writeValueAsString(user)
-      })
-      .saveAsTextFile(outputFile)
-  }
-
-  pprint.pprintln("Let's read and write some files!")
-
-  readAndWriteText()
-  readAndWriteJson()
-  readAndWriteCSV()
-  readAndWriteProtocolBuffer()
-  readAndWriteObjectFile()
-  readAndWriteGzipFile()
-
-  pprint.pprintln(
-    "We are done! Take a look at the ./outputs folder if you want to se the results.")
+  def readAndWriteGzipFile(): Unit = ???
 
 }
